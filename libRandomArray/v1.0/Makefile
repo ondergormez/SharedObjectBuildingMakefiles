@@ -15,9 +15,9 @@ OBJ_DIR     := $(ROOT)/03-obj
 SO_DIR      := $(ROOT)/04-so
 #SO_DIR  := /lib # Don't use this
 
+# Libraries
 LIB_INC_DIR := ../../libUtility/v1.0/01-inc
 LIB_SO_DIR  := ../../libUtility/v1.0/04-so/Utility
-
 
 # Names
 OBJ_NAME     := Array.o
@@ -25,6 +25,7 @@ SO_NAME      := libRandomArray.so.1.0
 SO_SYM_LNK_1 := $(SO_DIR)/libRandomArray.so.1
 SO_SYM_LNK_2 := $(SO_DIR)/libRandomArray.so
 
+# Compilers
 CPP      := g++
 #CC       := gcc
 
@@ -32,15 +33,11 @@ CPP      := g++
 CPPFLAGS := -Wall -fPIC -c -I$(INC_DIR) -std=c++11 -w
 
 SRCS_CPP = $(SRC_DIR)/Array.cpp
-
-#OBJS_CPP = $(OBJ_DIR)/$(OBJ_NAME)
+OBJS_CPP = $(OBJ_DIR)/$(OBJ_NAME)
 
 #SRCS_CPP = $(SRC_DIR)/$(wildcard *.cpp)
-OBJECTS = $(SOURCES:.cpp=.o)
+#OBJECTS = $(SOURCES:.cpp=.o)
 #HEADERS = $(SRC_DIR)/$(wildcard *.hpp)
-
-#	
-#OBJS_CPP = $(ROOT)/$(OBJ_NAME)
 
 main:
 	$(CPP) $(CPPFLAGS) $(SRCS_CPP) -I$(LIB_INC_DIR)
