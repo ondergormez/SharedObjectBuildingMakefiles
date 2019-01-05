@@ -16,7 +16,7 @@ SO_DIR      := $(ROOT)/04-so
 #SO_DIR  := /lib # Don't use this
 
 LIB_INC_DIR := ../../libUtility/v1.0/01-inc
-LIB_SO_DIR  := ../../libUtility/v1.0/04-so
+LIB_SO_DIR  := ../../libUtility/v1.0/04-so/Utility
 
 
 # Names
@@ -44,8 +44,8 @@ OBJECTS = $(SOURCES:.cpp=.o)
 
 main:
 	$(CPP) $(CPPFLAGS) $(SRCS_CPP) -I$(LIB_INC_DIR)
-	mv $(OBJ_NAME) $(OBJ_DIR)
-	$(CPP) -shared -Wl,-soname,libRandomArray.so.1 -o $(SO_NAME) $(OBJS_CPP) -L$(LIB_SO_DIR)/Utility
+	mv $(ROOT)/$(OBJ_NAME) $(OBJ_DIR)
+	$(CPP) -shared -Wl,-soname,libRandomArray.so.1 -o $(SO_NAME) $(OBJS_CPP) -L$(LIB_SO_DIR)
 	sudo mv $(SO_NAME) $(SO_DIR)
 	sudo ln -sf $(SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1)
 	sudo ln -sf $(SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_2)
