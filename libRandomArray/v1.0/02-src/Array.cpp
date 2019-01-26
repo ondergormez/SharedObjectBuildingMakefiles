@@ -29,7 +29,14 @@ using namespace std;
  */
 Array::Array()
 {
-
+    cout << endl;
+    cout << "**************************************" << endl;
+    if (!Array::InstanceCount) {
+        cout << "Random Array Library v1.0 used" << endl;
+        cout << "libRandomArray.so.1.0 linked dynamically" << endl;
+    }
+    cout << "Random Array Library Created Instance Count: " << ++Array::InstanceCount << endl;
+    cout << "**************************************" << endl;
 }
 
 /*
@@ -40,29 +47,36 @@ Array::~Array()
 
 }
 
+uint32_t Array::InstanceCount = 0;
+
 /*
-* Create Array
+* Fill Random Value
 */
-vector<uint32_t> &Array::CreateArray(uint32_t size)
+vector<uint32_t> &Array::FillRandomValue(vector<uint32_t> &array)
 {
 #ifndef NDEBUG
-    DisplayLibraryVersion("Array::CreateArray");
+    cout << endl;
+    cout << "**************************************" << endl;
+    std::cout << "Array::FillRandomValue function called!" << std::endl;
 #endif
-    /* initialize random seed: */
+    /* initialize random seed */
     srand(time(NULL));
-    vector<uint32_t> array = vector<uint32_t>(size);
-    for (uint32_t i = 0; i < size; ++i) {
-        array[i] = rand() % 200 + 1;;
+    for (uint32_t i = 0; i < array.size(); ++i) {
+        array[i] = rand() % 200 + 1;
     }
-    Utility::DisplayVector(array);
+    //Utility::DisplayVector(array);
+#ifndef NDEBUG
+    std::cout << "Array::FillRandomValue function call ended!" << std::endl;
+    cout << "**************************************" << endl;
+#endif
     return array;
 };
 
-void Array::DisplayLibraryVersion(string functionName)
+void Array::DisplayLibraryVersion()
 {
+    cout << endl;
     cout << "**************************************" << endl;
     cout << "Random Array Library v1.0 used" << endl;
     cout << "libRandomArray.so.1.0 linked dynamically" << endl;
-    cout << functionName << "function called!" << endl;
     cout << "**************************************" << endl;
 }

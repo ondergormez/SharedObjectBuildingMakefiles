@@ -25,6 +25,14 @@ using namespace std;
  */
 Utility::Utility()
 {
+    cout << endl;
+    std::cout << "**************************************" << std::endl;
+    if (!Utility::InstanceCount) {
+        std::cout << "Utility Library v1.0 used" << std::endl;
+        std::cout << "libUtility.so.1.0 linked dynamically" << std::endl;
+    }
+    cout << "Utility Library Created Instance Count: " << ++Utility::InstanceCount << endl;
+    std::cout << "**************************************" << std::endl;
 
 }
 
@@ -36,22 +44,31 @@ Utility::~Utility()
 
 }
 
+uint32_t Utility::InstanceCount = 0;
+
 vector<double> Utility::linspace(double startNumber, double endNumber, uint32_t nPoints){
 #ifndef NDEBUG
-    DisplayLibraryVersion("linspace");
+    cout << endl;
+    cout << "**************************************" << endl;
+    std::cout << "Utility::linspace function called!" << std::endl;
 #endif
     vector<double> tempLinspace;
 
     for( uint32_t i = 0 ; i < nPoints ; ++i ){
         tempLinspace.push_back( startNumber + ( ( i * ( endNumber - startNumber ) / (nPoints-1) ) ) );
     }
-
+#ifndef NDEBUG
+    std::cout << "Utility::linspace function call ended!" << std::endl;
+    cout << "**************************************" << endl;
+#endif
     return(tempLinspace);
 }
 
 vector<uint32_t> Utility::setdiff(std::vector<uint32_t>a, std::vector<uint32_t>b) {
 #ifndef NDEBUG
-    DisplayLibraryVersion("setdiff");
+    cout << endl;
+    cout << "**************************************" << endl;
+    std::cout << "Utility::setdiff function called!" << std::endl;
 #endif
     vector<uint32_t>result;
 
@@ -84,19 +101,35 @@ vector<uint32_t> Utility::setdiff(std::vector<uint32_t>a, std::vector<uint32_t>b
             findFlag = 0;
         }
     }
+#ifndef NDEBUG
+    std::cout << "Utility::setdiff function call ended!" << std::endl;
+    cout << "**************************************" << endl;
+#endif
     return(result);
 }
 
 unsigned int Utility::numel(std::vector<double> inputParam) {
 #ifndef NDEBUG
-    DisplayLibraryVersion("numel");
+    cout << endl;
+    cout << "**************************************" << endl;
+    std::cout << "Utility::numel function called!" << std::endl;
+#endif
+#ifndef NDEBUG
+    std::cout << "Utility::numel function call ended!" << std::endl;
+    cout << "**************************************" << endl;
 #endif
     return(inputParam.size());
 }
 
 unsigned int Utility::numel(std::vector<std::vector<double>> inputParam) {
 #ifndef NDEBUG
-    DisplayLibraryVersion("numel");
+    cout << endl;
+    cout << "**************************************" << endl;
+    std::cout << "Utility::numel function called!" << std::endl;
+#endif
+#ifndef NDEBUG
+    std::cout << "Utility::numel function call ended!" << std::endl;
+    cout << "**************************************" << endl;
 #endif
     return(inputParam.size()*inputParam[0].size());
 }
@@ -107,13 +140,19 @@ unsigned int Utility::numel(std::vector<std::vector<double>> inputParam) {
 void Utility::DisplayVector(std::vector<uint32_t> &vectorToBeDisplayed)
 {
 #ifndef NDEBUG
-    DisplayLibraryVersion("DisplayVector");
+    cout << endl;
+    cout << "**************************************" << endl;
+    std::cout << "Utility::DisplayVector function called!" << std::endl;
 #endif
     std::cout << "Size: " << vectorToBeDisplayed.size() << std::endl;
     for (uint32_t i = 0; i < vectorToBeDisplayed.size(); ++i)
         std::cout << std::setprecision(3) << std::left << std::setw(10) << vectorToBeDisplayed[i] << " ";
     std::cout << std::endl;
     std::cout << std::endl;
+#ifndef NDEBUG
+    std::cout << "Utility::DisplayVector function call ended!" << std::endl;
+    cout << "**************************************" << endl;
+#endif
 };
 
 /*
@@ -122,7 +161,9 @@ void Utility::DisplayVector(std::vector<uint32_t> &vectorToBeDisplayed)
 void Utility::DisplayMatrix(std::vector<std::vector<uint32_t>> &matrixToBeDisplayed)
 {
 #ifndef NDEBUG
-    DisplayLibraryVersion("DisplayMatrix");
+    cout << endl;
+    cout << "**************************************" << endl;
+    std::cout << "Utility::DisplayMatrix function called!" << std::endl;
 #endif
     std::cout << "A " << matrixToBeDisplayed.size() << " * " <<
         matrixToBeDisplayed[0].size() << " matrix will be displayed:" << std::endl;
@@ -134,16 +175,20 @@ void Utility::DisplayMatrix(std::vector<std::vector<uint32_t>> &matrixToBeDispla
         std::cout << std::endl;
     }
     std::cout << std::endl;
+#ifndef NDEBUG
+    std::cout << "Utility::DisplayMatrix function call ended!" << std::endl;
+    cout << "**************************************" << endl;
+#endif
 };
 
 /*
 * Display Library Version
 */
-void Utility::DisplayLibraryVersion(std::string functionName)
+void Utility::DisplayLibraryVersion()
 {
+    cout << endl;
     std::cout << "**************************************" << std::endl;
     std::cout << "Utility Library v1.0 used" << std::endl;
     std::cout << "libUtility.so.1.0 linked dynamically" << std::endl;
-    std::cout << functionName << " function called!" << std::endl;
     std::cout << "**************************************" << std::endl;
 };

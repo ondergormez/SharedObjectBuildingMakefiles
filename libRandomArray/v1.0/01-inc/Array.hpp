@@ -42,12 +42,13 @@
 class Array
 {
 private:
+    static uint32_t InstanceCount;
 
 public:
     Array();
     ~Array();
-    static std::vector<uint32_t> &CreateArray(uint32_t size);
-    static void DisplayLibraryVersion(std::string functionName);
+    static std::vector<uint32_t> &FillRandomValue(std::vector<uint32_t> &array);
+    static void DisplayLibraryVersion();
 };
 
 #endif /* __ARRAY__HPP__ */

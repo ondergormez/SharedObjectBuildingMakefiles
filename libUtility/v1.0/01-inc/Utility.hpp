@@ -44,6 +44,7 @@
 class Utility
 {
 private:
+    static uint32_t InstanceCount;
 
 public:
     Utility();
@@ -54,7 +55,7 @@ public:
     static unsigned int numel(std::vector<std::vector<double>> inputParam);
     static void DisplayVector(std::vector<uint32_t> &vectorToBeDisplayed);
     static void DisplayMatrix(std::vector<std::vector<uint32_t>> &matrixToBeDisplayed);
-    static void DisplayLibraryVersion(std::string functionName);
+    static void DisplayLibraryVersion();
 };
 
 #endif /* __UTILITY__HPP__ */
