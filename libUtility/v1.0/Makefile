@@ -12,8 +12,8 @@ MAIN_DIR    := $(ROOT)
 INC_DIR     := $(ROOT)/01-inc
 SRC_DIR     := $(ROOT)/02-src
 OBJ_DIR     := $(ROOT)/03-obj
-SO_DIR      := $(ROOT)/04-so
-#SO_DIR  := /lib # Don't use this
+#SO_DIR      := $(ROOT)/04-so
+SO_DIR  := /lib# Don't use this
 
 # Libraries
 #LIB_INC_DIR := 
