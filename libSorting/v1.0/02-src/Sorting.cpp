@@ -58,16 +58,23 @@ vector<uint32_t> &Sorting::SortArray(vector<uint32_t> &array)
     cout << "**************************************" << endl;
     std::cout << "Sorting::SortArray function called!" << std::endl;
 #endif
+    uint32_t size = array.size();
 
+#ifndef NDEBUG
+    std::cout << "Size: " << size << std::endl;
+#endif
     uint32_t minIndex;
-    for (uint32_t i = 0; i < array.size() - 1; ++i) {
+    for (uint32_t i = 0; i < size - 1; ++i) {
         minIndex = i;
-        for (uint32_t j = i + 1; j < array.size(); ++j) {
+        for (uint32_t j = i + 1; j < size; ++j) {
             if (array[j] < array[minIndex]) {
                 minIndex = j;
             }
-            SwapOneElement(array, minIndex, i);
         }
+#ifndef NDEBUG
+    std::cout << "minIndex = " << minIndex << std::endl;
+#endif
+        SwapOneElement(array, minIndex, i);
     }
 
 #ifndef NDEBUG
@@ -83,6 +90,10 @@ vector<uint32_t> &Sorting::SortArray(vector<uint32_t> &array)
 void Sorting::SwapOneElement(vector<uint32_t> &array, uint32_t idx1, uint32_t idx2)
 {
     uint32_t temp = array[idx1];
+
+#ifndef NDEBUG
+    std::cout << array[idx1] << " and " << array[idx2] << " will be swapped!" << std::endl;
+#endif
     array[idx1] = array[idx2];
     array[idx2] = temp;
 }

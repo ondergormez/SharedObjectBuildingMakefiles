@@ -14,8 +14,9 @@
  */
 
 #include <iostream>
-#include "Utility.hpp"
 #include "Array.hpp"
+#include "Sorting.hpp"
+#include "Utility.hpp"
 
 using namespace std;
 
@@ -23,13 +24,17 @@ int main(void)
 {
     cout << "This is a test project" << endl;
     //Array *arrayOperations = new Array();
+    //Sorting *sortingOperations = new Sorting();
     //Utility *utilityOperations = new Utility();   
 
     Array::DisplayLibraryVersion();
+    Sorting::DisplayLibraryVersion();
     Utility::DisplayLibraryVersion();
 
     vector<uint32_t> testArray = vector<uint32_t>(7);
     Array::FillRandomValue(testArray);
+    Utility::DisplayVector(testArray);
+    Sorting::SortArray(testArray);
     Utility::DisplayVector(testArray);
 
     return 0;

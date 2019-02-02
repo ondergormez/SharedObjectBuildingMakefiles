@@ -13,6 +13,7 @@ SRC_DIR     := $(ROOT)/02-src
 OBJ_DIR     := $(ROOT)/03-obj
 
 LIB_INC_DIR += -I../libRandomArray/v1.0/01-inc
+LIB_INC_DIR += -I../libSorting/v1.0/01-inc
 LIB_INC_DIR += -I../LibUtility/v1.0/01-inc
 
 #LIB_SO_DIR  += -L../libRandomArray/v1.0/04-so/RandomArray
@@ -20,6 +21,7 @@ LIB_INC_DIR += -I../LibUtility/v1.0/01-inc
 
 USED_LIBRARIES += -lUtility
 USED_LIBRARIES += -lRandomArray
+USED_LIBRARIES += -lSorting
 
 CPP      := g++
 #CC       := gcc

@@ -30,7 +30,7 @@ CPP      := g++
 #CC       := gcc
 
 # Add this flag to CPPFLAGS, for release optimization "-D NDEBUG"
-CPPFLAGS := -Wall -fPIC -c -I$(INC_DIR) -std=c++11 -w
+CPPFLAGS := -Wall -fPIC -c -I$(INC_DIR) -std=c++11 -w -D NDEBUG
 
 SRCS_CPP = $(SRC_DIR)/Utility.cpp
 OBJS_CPP = $(OBJ_DIR)/$(OBJ_NAME)
