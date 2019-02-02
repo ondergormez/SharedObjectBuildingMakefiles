@@ -50,4 +50,4 @@ main:
 
 .PHONY: clean
 clean:
-	-rm -rf $(OBJ_DIR)/* $(SO_DIR)/*
+	-rm -rf $(OBJ_DIR)/* $(SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1) $(SO_SYM_LNK_2)

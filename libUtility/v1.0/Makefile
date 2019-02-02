@@ -13,7 +13,7 @@ INC_DIR     := $(ROOT)/01-inc
 SRC_DIR     := $(ROOT)/02-src
 OBJ_DIR     := $(ROOT)/03-obj
 #SO_DIR      := $(ROOT)/04-so
-SO_DIR  := /lib# Don't use this
+SO_DIR  := /lib
 
 # Libraries
 #LIB_INC_DIR := 
@@ -45,4 +45,4 @@ main:
 
 .PHONY: clean
 clean:
-	-rm -rf $(OBJ_DIR)/* $(SO_DIR)/*
+	-rm -rf $(OBJ_DIR)/* $(SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1) $(SO_SYM_LNK_2)
