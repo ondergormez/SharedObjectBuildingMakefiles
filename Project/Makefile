@@ -18,6 +18,7 @@ LIB_INC_DIR += -I../LibUtility/v1.0/01-inc
 
 #LIB_SO_DIR  += -L../libRandomArray/v1.0/04-so/RandomArray
 #LIB_SO_DIR  += -L../libUtility/v1.0/04-so/Utility
+LIB_SO_DIR  += -L/home/gtuee/Desktop/ExternalLibraries
 
 USED_LIBRARIES += -lUtility
 USED_LIBRARIES += -lRandomArray
@@ -34,4 +35,4 @@ SRCS_CPP = $(SRC_DIR)/main.cpp
 OBJS_CPP = $(ROOT)/main.o
 
 main:
-	$(CPP) $(CPPFLAGS) $(SRCS_CPP) -I$(INC_DIR) $(LIB_INC_DIR) $(USED_LIBRARIES) -o prog.elf
+	$(CPP) $(CPPFLAGS) $(SRCS_CPP) -I$(INC_DIR) $(LIB_INC_DIR) $(LIB_SO_DIR) $(USED_LIBRARIES) -o prog.elf
