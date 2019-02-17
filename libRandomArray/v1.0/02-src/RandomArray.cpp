@@ -16,7 +16,7 @@
 #include <iostream>
 #include <cstdlib>    /* srand, rand */
 #include <ctime>      /* time */
-#include "Array.hpp"
+#include "RandomArray.hpp"
 #include "Utility.hpp"
 
 using namespace std;
