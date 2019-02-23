@@ -14,7 +14,7 @@
  */
 
 #include <iostream>
-#include "Array.hpp"
+#include "RandomArray.hpp"
 #include "Sorting.hpp"
 #include "Utility.hpp"
 

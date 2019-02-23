@@ -60,7 +60,7 @@ SO_SYM_LNK_2 := $(LIBRARIES_SO_DIR)/$(LIB_NAME).so
 # Compilers
 CPP      := g++
 
-# Add this flag to CPP_FLAGS, for release optimization "-D NDEBUG"
+# Add "-D NDEBUG" flag to CPP_FLAGS, for release optimization
 CPP_FLAGS := -Wall -fPIC -c -I$(INC_DIR) -std=c++11 -w
 
 SRCS_CPP = $(SRC_DIR)/$(SOURCE_NAME)
@@ -84,6 +84,3 @@ clean:
 	sudo rm $(LIBRARIES_INC_DIR)/$(HEADER_NAME)
 	sudo rm -rf $(OBJ_DIR)/* $(LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1) $(SO_SYM_LNK_2)
 	sudo rm /etc/ld.so.conf.d/$(LIB_NAME).conf
-
-test:
-	$(USER_INC_DIR)
