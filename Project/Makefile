@@ -1,8 +1,8 @@
 #
-# Filename:    DynamicLibraryImplementation
+# Filename:    SharedObjectBuildings
 # Author:      Önder Görmez
 # Dated:       December 01, 2018
-# Decription:  Makefile for the DynamicLibraryImplementation
+# Decription:  Makefile for the SharedObjectBuildings
 #
 
 # Directories
