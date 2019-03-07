@@ -24,9 +24,22 @@ VER_TAG = v
 dot:= .
 empty:= 
 space:= $(empty) $(empty)
+define newline
+
+
+endef
 
 LIB_NAME     = $(notdir $(shell dirname $(CURDIR)))
 PROJECT_NAME = $(subst $(LIB_TAG),$(empty),$(LIB_NAME))
+
+ifeq ($(findstring $(LIB_TAB),LIB_NAME),)
+    $(error Current folder is not a library folder.                 \
+        $(newline)Library folder name must be include "lib" prefix! \
+        $(newline)Example: "libPoissonPointProcess"                 \
+        $(newline))
+else
+    $(info Current folder is a "$(PROJECT_NAME)" library folder.)
+endif
 
 CURRENT_DIR = $(notdir $(CURDIR))#                          result: vX.Y
 VERSION     = $(subst $(VER_TAG),$(empty),$(CURRENT_DIR))#  result: X.Y
