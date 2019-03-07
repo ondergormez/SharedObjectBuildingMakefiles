@@ -42,9 +42,9 @@ SPACE_ADDED_LIB_NAME = $(subst $(LIB_TAG),$(LIB_TAG)$(space),$(LIB_NAME))
 IS_LIB_FOLDER = $(findstring $(LIB_TAG),$(SPACE_ADDED_LIB_NAME))
 
 ifeq ($(IS_LIB_FOLDER),$(LIB_TAG))
-    $(info Current folder is a "$(PROJECT_NAME)" library folder.)
+    $(info Current parent folder is a "$(PROJECT_NAME)" library folder.)
 else
-    $(error Current folder "$(LIB_NAME)" is not a library folder.                       \
+    $(error Current parent folder "$(LIB_NAME)" is not a library folder.                \
         $(newline)                 Library folder name must be include "lib" prefix!    \
         $(newline)                 Example: "libPoissonPointProcess"                    \
         $(newline))
