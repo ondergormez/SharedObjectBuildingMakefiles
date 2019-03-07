@@ -32,13 +32,22 @@ endef
 LIB_NAME     = $(notdir $(shell dirname $(CURDIR)))
 PROJECT_NAME = $(subst $(LIB_TAG),$(empty),$(LIB_NAME))
 
-ifeq ($(findstring $(LIB_TAB),LIB_NAME),)
-    $(error Current folder is not a library folder.                 \
-        $(newline)Library folder name must be include "lib" prefix! \
-        $(newline)Example: "libPoissonPointProcess"                 \
-        $(newline))
-else
+
+# Return space added value. For example "libPoissonPointProcess" to "lib PoissonPointProcess".
+# Or return original value "Myproject" to "Myproject" 
+SPACE_ADDED_LIB_NAME = $(subst $(LIB_TAG),$(LIB_TAG)$(space),$(LIB_NAME))
+
+# If SPACE_ADDED_LIB_NAME is contains a lib name return LIB_TAG
+# else return null
+IS_LIB_FOLDER = $(findstring $(LIB_TAG),$(SPACE_ADDED_LIB_NAME))
+
+ifeq ($(IS_LIB_FOLDER),$(LIB_TAG))
     $(info Current folder is a "$(PROJECT_NAME)" library folder.)
+else
+    $(error Current folder "$(LIB_NAME)" is not a library folder.                       \
+        $(newline)                 Library folder name must be include "lib" prefix!    \
+        $(newline)                 Example: "libPoissonPointProcess"                    \
+        $(newline))
 endif
 
 CURRENT_DIR = $(notdir $(CURDIR))#                          result: vX.Y
