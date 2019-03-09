@@ -55,9 +55,9 @@ IS_LIB_FOLDER = $(findstring $(LIB_TAG),$(SPACE_ADDED_LIB_NAME))
 ifeq ($(IS_LIB_FOLDER),$(LIB_TAG))
     $(info Current parent folder "$(PROJECT_NAME)" is a library folder.)
 else
-    $(error Current parent folder "$(LIB_NAME)" is not a library folder.                \
-        $(newline)                 Library folder name must be include "lib" prefix!    \
-        $(newline)                 Example: "libPoissonPointProcess"                    \
+    $(error Current parent folder "$(LIB_NAME)" is not a library folder.                                                \
+        $(newline)                 Library folder name must be include "lib" prefix!                                    \
+        $(newline)                 Example: "libPoissonPointProcess"                                                    \
         $(newline))
 endif
 
@@ -70,31 +70,48 @@ CURRENT_DIR = $(notdir $(CURDIR))
 
 # Return space added value. For example "v1.0" to "v 1.0".
 # Or return original value "y.e" to "y.e" 
-SPACE_ADDED_VERSION_NAME = $(subst $(VER_TAG),$(VER_TAG)$(space),$(CURRENT_DIR))
+SPACE_ADDED_CURRENT_DIR = $(subst $(VER_TAG),$(VER_TAG)$(space),$(CURRENT_DIR))
 
-ifneq ($(word 1,$(SPACE_ADDED_VERSION_NAME)),$(VER_TAG))
-    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.                                                    \
-        $(newline)                 Library version folder name must include "v" prefix!                                         \
-        $(newline)                 Example: "v1.3" or "v2.8"                                                                    \
-        $(newline))
+ifneq ($(word 1,$(SPACE_ADDED_CURRENT_DIR)),$(VER_TAG))
+    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.                                            \
+    $(newline)                 Library version folder name must include "v" prefix!                                     \
+    $(newline)                 Example: "v1.3" or "v2.8"                                                                \
+    $(newline))
 endif
 
-ifeq ($(word 2,$(SPACE_ADDED_VERSION_NAME)),$(empty))
-    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.                                                    \
-        $(newline)                 Library version folder name must include major and minor verison number separated by dot!    \
-        $(newline)                 Example: "v1.3" or "v2.8"                                                                    \
-        $(newline))
+#  Result: X.Y or empty value
+VERSION     = $(word 2,$(SPACE_ADDED_CURRENT_DIR))
+
+ifeq ($(VERSION),$(empty))
+    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.                                            \
+    $(newline)                 Library version folder name must include major and minor verison number separated by dot!\
+    $(newline)                 Example: "v1.3" or "v2.8"                                                                \
+    $(newline))
 endif
 
-#VERSION     = $(subst $(VER_TAG),$(empty),$(CURRENT_DIR))#  result: X.Y or empty value
+# If VERSION is contains a dot return dot
+# else return null
+IS_INCLUDE_DOT = $(findstring $(dot),$(VERSION))
 
-$(info SPACE_ADDED_VERSION_NAME is $(SPACE_ADDED_VERSION_NAME))
-$(info VERSION is $(VERSION))
+ifeq ($(IS_INCLUDE_DOT),$(dot))
+    $(info Current folder name "$(CURRENT_DIR)" is include dot!)
+else
+    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.                                            \
+    $(newline)                 Library version folder name must include dot for separating major and minor version      \
+    $(newline)                 number!                                                                                  \
+    $(newline)                 Example: "v1.3" or "v2.8"                                                                \
+    $(newline))
+endif
+
+# Result: X Y or just X
+SPACE_ADDED_VERSION_NAME = $(subst $(dot),$(space),$(VERSION))
+
+MAJOR_VER   = $(word 1,$(SPACE_ADDED_VERSION_NAME))#                            result: X
+
+$(info MAJOR_VER is $(MAJOR_VER))
 $(error )
 
-TEMP        = $(subst $(dot),$(space),$(VERSION))#          result: X Y
-MAJOR_VER   = $(word 1,$(TEMP))#                            result: X
-MINOR_VER = $(word 2,$(TEMP))#                              result: Y
+MINOR_VER = $(word 2,$(SPACE_ADDED_VERSION_NAME))#                              result: Y
 
 ########################################################################################################################
 #                                 NECESSARY SUBFOLDERS DETECTION PART OF THE MAKEFILE                                  #
