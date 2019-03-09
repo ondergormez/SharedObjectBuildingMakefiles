@@ -5,6 +5,10 @@
 # Decription:  Makefile for the Shared Object Buildings
 #
 
+########################################################################################################################
+#                                   USER SPECIFIC CONFIGURATION PART OF THE MAKEFILE                                   #
+########################################################################################################################
+
 #
 # User Configuration Area
 # Please change this section for your specific needs. Such as
@@ -13,6 +17,10 @@
 
 USER_INC_DIR += -Ixxx
 USER_LIBRARIES += -lxxx
+
+########################################################################################################################
+#                                       UTILITY DEFINITION PART OF THE MAKEFILE                                        #
+########################################################################################################################
 
 #
 # Generic Area
@@ -29,9 +37,12 @@ define newline
 
 endef
 
+########################################################################################################################
+#                                    LIBRARY FOLDER DETECTION PART OF THE MAKEFILE                                     #
+########################################################################################################################
+
 LIB_NAME     = $(notdir $(shell dirname $(CURDIR)))
 PROJECT_NAME = $(subst $(LIB_TAG),$(empty),$(LIB_NAME))
-
 
 # Return space added value. For example "libPoissonPointProcess" to "lib PoissonPointProcess".
 # Or return original value "Myproject" to "Myproject" 
@@ -42,7 +53,7 @@ SPACE_ADDED_LIB_NAME = $(subst $(LIB_TAG),$(LIB_TAG)$(space),$(LIB_NAME))
 IS_LIB_FOLDER = $(findstring $(LIB_TAG),$(SPACE_ADDED_LIB_NAME))
 
 ifeq ($(IS_LIB_FOLDER),$(LIB_TAG))
-    $(info Current parent folder is a "$(PROJECT_NAME)" library folder.)
+    $(info Current parent folder "$(PROJECT_NAME)" is a library folder.)
 else
     $(error Current parent folder "$(LIB_NAME)" is not a library folder.                \
         $(newline)                 Library folder name must be include "lib" prefix!    \
@@ -50,11 +61,44 @@ else
         $(newline))
 endif
 
-CURRENT_DIR = $(notdir $(CURDIR))#                          result: vX.Y
-VERSION     = $(subst $(VER_TAG),$(empty),$(CURRENT_DIR))#  result: X.Y
+########################################################################################################################
+#                                    VERSION FOLDER DETECTION PART OF THE MAKEFILE                                     #
+########################################################################################################################
+
+# result: vX.Y or invalid folder name
+CURRENT_DIR = $(notdir $(CURDIR))
+
+# Return space added value. For example "v1.0" to "v 1.0".
+# Or return original value "y.e" to "y.e" 
+SPACE_ADDED_VERSION_NAME = $(subst $(VER_TAG),$(VER_TAG)$(space),$(CURRENT_DIR))
+
+ifneq ($(word 1,$(SPACE_ADDED_VERSION_NAME)),$(VER_TAG))
+    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.                                                    \
+        $(newline)                 Library version folder name must include "v" prefix!                                         \
+        $(newline)                 Example: "v1.3" or "v2.8"                                                                    \
+        $(newline))
+endif
+
+ifeq ($(word 2,$(SPACE_ADDED_VERSION_NAME)),$(empty))
+    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.                                                    \
+        $(newline)                 Library version folder name must include major and minor verison number separated by dot!    \
+        $(newline)                 Example: "v1.3" or "v2.8"                                                                    \
+        $(newline))
+endif
+
+#VERSION     = $(subst $(VER_TAG),$(empty),$(CURRENT_DIR))#  result: X.Y or empty value
+
+$(info SPACE_ADDED_VERSION_NAME is $(SPACE_ADDED_VERSION_NAME))
+$(info VERSION is $(VERSION))
+$(error )
+
 TEMP        = $(subst $(dot),$(space),$(VERSION))#          result: X Y
 MAJOR_VER   = $(word 1,$(TEMP))#                            result: X
 MINOR_VER = $(word 2,$(TEMP))#                              result: Y
+
+########################################################################################################################
+#                                 NECESSARY SUBFOLDERS DETECTION PART OF THE MAKEFILE                                  #
+########################################################################################################################
 
 # Directories
 ROOT         = .
