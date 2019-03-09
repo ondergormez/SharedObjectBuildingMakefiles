@@ -53,7 +53,7 @@ SPACE_ADDED_LIB_NAME = $(subst $(LIB_TAG),$(LIB_TAG)$(space),$(LIB_NAME))
 IS_LIB_FOLDER = $(findstring $(LIB_TAG),$(SPACE_ADDED_LIB_NAME))
 
 ifeq ($(IS_LIB_FOLDER),$(LIB_TAG))
-    $(info Current parent folder "$(PROJECT_NAME)" is a library folder.)
+    $(info Current parent folder "$(LIB_NAME)" is a library folder.)
 else
     $(error Current parent folder "$(LIB_NAME)" is not a library folder.                                                \
         $(newline)                 Library folder name must be include "lib" prefix!                                    \
@@ -94,7 +94,7 @@ endif
 IS_INCLUDE_DOT = $(findstring $(dot),$(VERSION))
 
 ifeq ($(IS_INCLUDE_DOT),$(dot))
-    $(info Current folder name "$(CURRENT_DIR)" is include dot!)
+    $(info Current folder name "$(CURRENT_DIR)" is contains dot!)
 else
     $(error Current folder "$(CURRENT_DIR)" is not a library version folder.                                            \
     $(newline)                 Library version folder name must include dot for separating major and minor version      \
@@ -106,12 +106,33 @@ endif
 # Result: X Y or just X
 SPACE_ADDED_VERSION_NAME = $(subst $(dot),$(space),$(VERSION))
 
-MAJOR_VER   = $(word 1,$(SPACE_ADDED_VERSION_NAME))#                            result: X
+# result: X
+MAJOR_VER = $(word 1,$(SPACE_ADDED_VERSION_NAME))
 
-$(info MAJOR_VER is $(MAJOR_VER))
-$(error )
+IS_VALID_MAJOR_VER = $(shell [ $(MAJOR_VER) -ge 0 ] && echo true)
 
-MINOR_VER = $(word 2,$(SPACE_ADDED_VERSION_NAME))#                              result: Y
+ifeq ($(IS_VALID_MAJOR_VER),true)
+    $(info Current folder name "$(CURRENT_DIR)" is contains valid major version number "$(MAJOR_VER)"!)
+else
+    $(error Major version number "$(MAJOR_VER)" is not a valid version number.                                          \
+    $(newline)                 Library version folder name must include valid major version nuber.                      \
+    $(newline)                 Example: "v1.3" or "v2.8"                                                                \
+    $(newline))
+endif
+
+# result: Y
+MINOR_VER = $(word 2,$(SPACE_ADDED_VERSION_NAME))
+
+IS_VALID_MINOR_VER = $(shell [ $(MINOR_VER) -ge 0 ] && echo true)
+
+ifeq ($(IS_VALID_MINOR_VER),true)
+    $(info Current folder name "$(CURRENT_DIR)" is contains valid minor version number "$(MINOR_VER)"!)
+else
+    $(error Minor version number "$(MINOR_VER)" is not a valid version number.                                          \
+    $(newline)                 Library version folder name must include valid minor version nuber.                      \
+    $(newline)                 Example: "v1.3" or "v2.8"                                                                \
+    $(newline))
+endif
 
 ########################################################################################################################
 #                                 NECESSARY SUBFOLDERS DETECTION PART OF THE MAKEFILE                                  #
