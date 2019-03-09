@@ -170,6 +170,10 @@ CPP_FLAGS := -Wall -fPIC -c -I$(INC_DIR) -std=c++11 -w
 SRCS_CPP = $(SRC_DIR)/$(SOURCE_NAME)
 OBJS_CPP = $(OBJ_DIR)/$(OBJ_NAME)
 
+########################################################################################################################
+#                                             RECIPES PART OF THE MAKEFILE                                             #
+########################################################################################################################
+
 main:
 	$(CPP) $(CPP_FLAGS) $(SRCS_CPP) $(INCLUDE_DIRS) $(USER_INC_DIR)
 	mv $(ROOT)/$(OBJ_NAME) $(OBJ_DIR)
@@ -188,3 +192,7 @@ clean:
 	sudo rm $(LIBRARIES_INC_DIR)/$(HEADER_NAME)
 	sudo rm -rf $(OBJ_DIR)/* $(LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1) $(SO_SYM_LNK_2)
 	sudo rm /etc/ld.so.conf.d/$(LIB_NAME).conf
+
+########################################################################################################################
+#                                                 END OF THE MAKEFILE                                                  #
+########################################################################################################################
