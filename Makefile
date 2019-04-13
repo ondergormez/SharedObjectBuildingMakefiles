@@ -48,11 +48,7 @@ PROJECT_NAME = $(subst $(LIB_TAG),$(empty),$(LIB_NAME))
 # Or return original value "Myproject" to "Myproject" 
 SPACE_ADDED_LIB_NAME = $(subst $(LIB_TAG),$(LIB_TAG)$(space),$(LIB_NAME))
 
-# If SPACE_ADDED_LIB_NAME is contains a lib name return LIB_TAG
-# else return null
-IS_LIB_FOLDER = $(findstring $(LIB_TAG),$(SPACE_ADDED_LIB_NAME))
-
-ifeq ($(IS_LIB_FOLDER),$(LIB_TAG))
+ifeq ($(word 1,$(SPACE_ADDED_LIB_NAME)),$(LIB_TAG))
     $(info Current parent folder "$(LIB_NAME)" is a library folder.)
 else
     $(error Current parent folder "$(LIB_NAME)" is not a library folder.                                                \
