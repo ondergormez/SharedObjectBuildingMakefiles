@@ -41,7 +41,7 @@ endef
 #                                    LIBRARY FOLDER DETECTION PART OF THE MAKEFILE                                     #
 ########################################################################################################################
 
-LIB_NAME     = $(notdir $(shell dirname $(CURDIR)))
+LIB_NAME     = $(notdir $(shell dirname "$(CURDIR)"))
 PROJECT_NAME = $(subst $(LIB_TAG),$(empty),$(LIB_NAME))
 
 # Return space added value. For example "libPoissonPointProcess" to "lib PoissonPointProcess".
