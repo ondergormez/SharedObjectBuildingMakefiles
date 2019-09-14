@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <dlfcn.h>
 
+#include <cmath>                        /* NOTE: M_PI */
 #include <fstream>                      /* NOTE: ofstream */
 #include <iostream>                     /* NOTE: std::cout, std::fixed */
 #include <iomanip>                      /* NOTE: std::setprecision */
@@ -55,10 +56,6 @@ main(int argc, char **argv)
 
 void SineWaveGenerator()
 {
-    /* TODO: Delete unused part of this function */
-    /* TODO: Review all code */
-    /* TODO: Use standart PI notation in C++ */
-    /* TODO: Remove underlined name convention */
     int frequency = 50;
     int RMSVoltageAmplitude = 220;
     double peakAmplitude = RMSVoltageAmplitude * SquareRoot(2);
@@ -74,10 +71,10 @@ void SineWaveGenerator()
     for (int millisecond = 0; millisecond <= 120; ++millisecond)
     {
         data << fixed << setw(12) << setprecision(3) << 0.001 * millisecond
-                      << setw(20) << setprecision(7) << peakAmplitude * (*Sine)(2 * 3.14 * frequency * 0.001 * millisecond) << endl;
+                      << setw(20) << setprecision(7) << peakAmplitude * (*Sine)(2 * M_PI * frequency * 0.001 * millisecond) << endl;
 
         cout << fixed << setw(12) << setprecision(3) << 0.001 * millisecond
-                      << setw(20) << setprecision(7) << peakAmplitude * (*Sine)(2 * 3.14 * frequency * 0.001 * millisecond) << endl;
+                      << setw(20) << setprecision(7) << peakAmplitude * (*Sine)(2 * M_PI * frequency * 0.001 * millisecond) << endl;
     }
 
     data.close ( );
