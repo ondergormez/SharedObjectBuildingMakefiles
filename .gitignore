@@ -1,4 +1,4 @@
-Project/prog.elf
+*.elf
 libRandomArray/v1.0/Makefile
 libSorting/v1.0/Makefile
 libUtility/v1.0/Makefile

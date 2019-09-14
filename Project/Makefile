@@ -31,7 +31,7 @@ SRCS_CPP = $(SRC_DIR)/main.cpp
 OBJS_CPP = $(ROOT)/main.o
 
 main:
-	$(CPP) $(CPP_FLAGS) $(SRCS_CPP) -I$(INC_DIR) -I$(LIBRARIES_INC_DIR) -L$(LIBRARIES_SO_DIR) $(USED_LIBRARIES) -o prog.elf
+	$(CPP) $(CPP_FLAGS) $(SRCS_CPP) -I$(INC_DIR) -I$(LIBRARIES_INC_DIR) -L$(LIBRARIES_SO_DIR) $(USED_LIBRARIES) -ldl -o $(OBJ_DIR)/prog.elf
 
 test:
 	$(USED_LIBRARIES)
