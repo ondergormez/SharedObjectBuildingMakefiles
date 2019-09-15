@@ -1,56 +1,53 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <dlfcn.h>
+#include <dlfcn.h>                                                              /* NOTE: Dynamic Loading functions */
+#include <cmath>                                                                /* NOTE: M_PI */
+#include <fstream>                                                              /* NOTE: ofstream */
+#include <iostream>                                                             /* NOTE: std::cout, std::fixed */
+#include <iomanip>                                                              /* NOTE: std::setprecision */
 
-#include <cmath>                        /* NOTE: M_PI */
-#include <fstream>                      /* NOTE: ofstream */
-#include <iostream>                     /* NOTE: std::cout, std::fixed */
-#include <iomanip>                      /* NOTE: std::setprecision */
+//#define NDEBUG
 
 using namespace std;
 
-double (*Sine)(double);
-double (*SquareRoot)(double);
+double (*FPSine)(double);
+double (*FPSquareRoot)(double);
 void SineWaveGenerator();
 
-int
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
     void *handle;
     char *error;
 
-   handle = dlopen("libm.so", RTLD_LAZY);
+    dlerror();                                                                  /* NOTE: Clear any existing error */
+
+    handle = dlopen("libm.so", RTLD_LAZY);
     if (!handle) {
-        fprintf(stderr, "%s\n", dlerror());
+        cerr << dlerror() << endl;
         exit(EXIT_FAILURE);
     }
 
-   dlerror();    /* Clear any existing error */
+    dlerror();                                                                  /* NOTE: Clear any existing error */
 
-   /* Writing: Sine = (double (*)(double)) dlsym(handle, "sin");
-       would seem more natural, but the C99 standard leaves
-       casting from "void *" to a function pointer undefined.
-       The assignment used below is the POSIX.1-2003 (Technical
-       Corrigendum 1) workaround; see the Rationale for the
-       POSIX specification of dlsym(). */
-
-   *(void **) (&Sine) = dlsym(handle, "sin");
-
-   if ((error = dlerror()) != NULL)  {
-        fprintf(stderr, "%s\n", error);
+    FPSine = (double (*)(double)) dlsym(handle, "sin");
+    if ((error = dlerror()) != NULL)  {
+        cerr << error << endl;
         exit(EXIT_FAILURE);
     }
 
-   *(void **) (&SquareRoot) = dlsym(handle, "sqrt");
-
-   if ((error = dlerror()) != NULL)  {
-        fprintf(stderr, "%s\n", error);
+    FPSquareRoot = (double (*)(double)) dlsym(handle, "sqrt");
+    if ((error = dlerror()) != NULL)  {
+        cerr << error << endl;
         exit(EXIT_FAILURE);
     }
 
     SineWaveGenerator();
 
-    dlclose(handle);
+    int errorCode = 0;
+    if ((errorCode = dlclose(handle)) != 0)  {
+        cerr << "Failed to close \"handle\"!" << endl;
+        cerr << "Error Code: " << errorCode << endl;
+        exit(EXIT_FAILURE);
+    }
+
     exit(EXIT_SUCCESS);
 }
 
@@ -58,7 +55,7 @@ void SineWaveGenerator()
 {
     int frequency = 50;
     int RMSVoltageAmplitude = 220;
-    double peakAmplitude = RMSVoltageAmplitude * SquareRoot(2);
+    double peakAmplitude = RMSVoltageAmplitude * FPSquareRoot(2);
 
     //
     //  Create the data file.
@@ -67,31 +64,30 @@ void SineWaveGenerator()
     ofstream data;
 
     data.open(dataFileName.c_str());
-
     for (int millisecond = 0; millisecond <= 120; ++millisecond)
     {
-        data << fixed << setw(12) << setprecision(3) << 0.001 * millisecond
-                      << setw(20) << setprecision(7) << peakAmplitude * (*Sine)(2 * M_PI * frequency * 0.001 * millisecond) << endl;
-
-        cout << fixed << setw(12) << setprecision(3) << 0.001 * millisecond
-                      << setw(20) << setprecision(7) << peakAmplitude * (*Sine)(2 * M_PI * frequency * 0.001 * millisecond) << endl;
+        data << fixed << setw(15) << setprecision(3) << 0.001 * millisecond
+                      << setw(22) << setprecision(7) << peakAmplitude * FPSine(2 * M_PI * frequency * 0.001 * millisecond) << endl;
+#ifndef NDEBUG
+        cout << fixed << setw(15) << setprecision(3) << 0.001 * millisecond
+                      << setw(22) << setprecision(7) << peakAmplitude * FPSine(2 * M_PI * frequency * 0.001 * millisecond) << endl;
+#endif
     }
+    data.close();
 
-    data.close ( );
-
+#ifndef NDEBUG
     cout << " " << endl;
     cout << "  Data stored in \"" << dataFileName << "\"." << endl;
+#endif
 
     //
-    //  Create the command file.
+    //  Create the GNU Plot command file.
     //
     string commandFileName = "sine_wave_timeline_commands.txt";
     string createdImageFileName = "sine_wave_timeline.png";
-    ofstream command;
-    
+    ofstream command;    
 
-    command.open ( commandFileName.c_str ( ) );
-
+    command.open(commandFileName.c_str());
     command << "# " << commandFileName << endl;
     command << "#" << endl;
     command << "# Usage:" << endl;
@@ -106,8 +102,9 @@ void SineWaveGenerator()
     command << "set grid" << endl;
     command << "plot '" << dataFileName << "' using 1:2 title \"f(t)=" << setprecision(7) << peakAmplitude <<"sin(wt)\" lw 2" << endl;
     command << "quit";
+    command.close();
 
-    command.close ( );
-
+#ifndef NDEBUG
     cout << "  Plot commands stored in \"" << commandFileName << "\"." << endl;
+#endif
 }

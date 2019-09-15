@@ -27,3 +27,4 @@ system(sprintf("./$OUTPUT_NAME"));
 system(sprintf("gnuplot < $FILE_NAME_TO_BE_PLOTTED"));
 system(sprintf("gwenview $IMAGE_NAME_TO_BE_SHOWED"));
 chdir "$CURRENT_DIR";
+system(sprintf("clear"));
