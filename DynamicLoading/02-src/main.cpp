@@ -100,7 +100,7 @@ void SineWaveGenerator()
     command << "set ylabel ' Domestic Mains Supply Voltage (" << RMSVoltageAmplitude << " VAC rms)'" << endl;
     command << "set title 'Time-dependent Change of Mains Supply Voltage'" << endl;
     command << "set grid" << endl;
-    command << "plot '" << dataFileName << "' using 1:2 title \"f(t)=" << setprecision(7) << peakAmplitude <<"sin(wt)\" lw 2" << endl;
+    command << "plot '" << dataFileName << "' using 1:2 title \"v(t)=" << setprecision(7) << peakAmplitude <<"sin(wt)\" lw 2" << endl;
     command << "quit";
     command.close();
 
