@@ -1,7 +1,7 @@
 #include <iostream>                                                             /* NOTE: std::cout */
+#include "CalculateArea.h"
 
 using namespace std;
-unsigned int CalculateRectangleArea(unsigned int length, unsigned int width);
 
 int main(int argc, char **argv)
 {
