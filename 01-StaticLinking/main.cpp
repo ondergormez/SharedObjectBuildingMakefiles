@@ -10,6 +10,7 @@ int main(int argc, char **argv)
 
     cout << "Rectangle Length: " << length << endl;
     cout << "Rectangle Width: " << width << endl;
+
     cout << "Area of Rectangle: " << CalculateRectangleArea(length, width) << endl;
 
     exit(EXIT_SUCCESS);
