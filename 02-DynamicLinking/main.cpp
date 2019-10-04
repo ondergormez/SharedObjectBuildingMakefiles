@@ -16,5 +16,7 @@ int main(int argc, char **argv)
         cout << "Different string input!" << endl;
     }
 
+    cout << "Character length of the left: " << my_strlen(left.c_str()) << endl << endl;
+
     exit(EXIT_SUCCESS);
 }
