@@ -27,8 +27,8 @@ system(sprintf("g++ -shared -o libMyStringOp.so my_strcmp.o my_strlen.o"));
 printf("libMyStringOp.so library file created!\n\n");
 
 # This part builds the program with the required .o files.
-printf("g++ -Wall -std=c++11 main.cpp my_strcmp.o my_strlen.o -o prog.elf\n\n");
-system(sprintf("g++ -Wall -std=c++11 main.cpp my_strcmp.o my_strlen.o -o prog.elf"));
+printf("g++ -Wall -std=c++11 main.cpp -L./ -lMyStringOp -o prog.elf\n\n");
+system(sprintf("g++ -Wall -std=c++11 main.cpp -L./ -lMyStringOp -o prog.elf"));
 
 printf("./prog.elf\n");
 system(sprintf("./prog.elf"));
