@@ -6,8 +6,8 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-    string left = " ";
-    string rigth = "";
+    string left = "Shared";
+    string rigth = "Object";
 
     if (!my_strcmp(left.c_str(), rigth.c_str())) {
         cout << "Left and right strings are the same!" << endl;
