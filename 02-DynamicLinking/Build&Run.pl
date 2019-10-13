@@ -50,14 +50,20 @@ system(sprintf("g++ -shared -o libMyStringOp.so my_strcmp.o my_strlen.o"));
 printf("libMyStringOp.so library file created!\n\n");
 
 if ($ARGV[0] eq $BuildForRpath) {
-
+    # This part builds the program with the required .o files.
+    printf("g++ -Wall -std=c++11 main.cpp -L./ -lMyStringOp -Wl,-rpath=./ -o prog.elf\n");
+    system(sprintf("g++ -Wall -std=c++11 main.cpp -L./ -lMyStringOp -Wl,-rpath=./ -o prog.elf"));
 }
 elsif ($ARGV[0] eq $BuildFor_LD_LIBRARY_PATH) {
     # This part builds the program with the required .o files.
     printf("g++ -Wall -std=c++11 main.cpp -L./ -lMyStringOp -o prog.elf\n");
     system(sprintf("g++ -Wall -std=c++11 main.cpp -L./ -lMyStringOp -o prog.elf"));
 }
-    printf("prog.elf file created!\n\n");
+printf("prog.elf file created!\n\n");
+
+printf("ldd prog.elf | grep MyString\n");
+system(sprintf("ldd prog.elf | grep MyString\n"));
+printf("\n");
 
 printf("./prog.elf\n");
 system(sprintf("./prog.elf"));
