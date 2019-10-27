@@ -44,16 +44,16 @@ endef
 LIB_NAME     = $(notdir $(shell dirname "$(CURDIR)"))
 PROJECT_NAME = $(subst $(LIB_TAG),$(empty),$(LIB_NAME))
 
-# Return space added value. For example "libPoissonPointProcess" to "lib PoissonPointProcess".
-# Or return original value "Myproject" to "Myproject" 
+# Return space added value. For example "libPoissonPointProcess" to
+# "lib PoissonPointProcess". Or return original value "Myproject" to "Myproject" 
 SPACE_ADDED_LIB_NAME = $(subst $(LIB_TAG),$(LIB_TAG)$(space),$(LIB_NAME))
 
 ifeq ($(word 1,$(SPACE_ADDED_LIB_NAME)),$(LIB_TAG))
     $(info Current parent folder "$(LIB_NAME)" is a library folder.)
 else
-    $(error Current parent folder "$(LIB_NAME)" is not a library folder.                                                \
-        $(newline)                 Library folder name must contain "lib" prefix!                                       \
-        $(newline)                 Example: "libPoissonPointProcess"                                                    \
+    $(error Current parent folder "$(LIB_NAME)" is not a library folder.       \
+        $(newline)   Library folder name must contain "lib" prefix!            \
+        $(newline)   Example: "libPoissonPointProcess"                         \
         $(newline))
 endif
 
@@ -69,9 +69,9 @@ CURRENT_DIR = $(notdir $(CURDIR))
 SPACE_ADDED_CURRENT_DIR = $(subst $(VER_TAG),$(VER_TAG)$(space),$(CURRENT_DIR))
 
 ifneq ($(word 1,$(SPACE_ADDED_CURRENT_DIR)),$(VER_TAG))
-    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.                                            \
-    $(newline)                 Library version folder name must contain "v" prefix!                                     \
-    $(newline)                 Example: "v1.3" or "v2.8"                                                                \
+    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.   \
+    $(newline)   Library version folder name must contain "v" prefix!          \
+    $(newline)   Example: "v1.3" or "v2.8"                                     \
     $(newline))
 endif
 
@@ -79,9 +79,10 @@ endif
 VERSION     = $(word 2,$(SPACE_ADDED_CURRENT_DIR))
 
 ifeq ($(VERSION),$(empty))
-    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.                                            \
-    $(newline)                 Library version folder name must contain major and minor verison number separated by dot!\
-    $(newline)                 Example: "v1.3" or "v2.8"                                                                \
+    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.   \
+    $(newline)   Library version folder name must contain major and minor      \
+    $(newline)   verison number separated by dot!                              \
+    $(newline)   Example: "v1.3" or "v2.8"                                     \
     $(newline))
 endif
 
@@ -92,10 +93,10 @@ IS_INCLUDE_DOT = $(findstring $(dot),$(VERSION))
 ifeq ($(IS_INCLUDE_DOT),$(dot))
     $(info Current folder name "$(CURRENT_DIR)" is contains dot!)
 else
-    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.                                            \
-    $(newline)                 Library version folder name must contain dot for separating major and minor version      \
-    $(newline)                 number!                                                                                  \
-    $(newline)                 Example: "v1.3" or "v2.8"                                                                \
+    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.   \
+    $(newline)   Library version folder name must contain dot for separating   \
+    $(newline)   major and minor version number!                               \
+    $(newline)   Example: "v1.3" or "v2.8"                                     \
     $(newline))
 endif
 
