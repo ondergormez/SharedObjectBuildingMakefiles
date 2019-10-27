@@ -114,7 +114,7 @@ ifeq ($(IS_VALID_MAJOR_VER),true)
 else
     $(error Major version number "$(MAJOR_VER)" is not a valid version number. \
     $(newline)   Library version folder name must contain                      \
-                 valid major version nuber.                                    \
+                 valid major version number.                                   \
     $(newline)   Example: "v1.3" or "v2.8"                                     \
     $(newline))
 endif
@@ -125,11 +125,13 @@ MINOR_VER = $(word 2,$(SPACE_ADDED_VERSION_NAME))
 IS_VALID_MINOR_VER = $(shell [ $(MINOR_VER) -ge 0 ] && echo true)
 
 ifeq ($(IS_VALID_MINOR_VER),true)
-    $(info Current folder name "$(CURRENT_DIR)" is contains valid minor version number "$(MINOR_VER)"!)
+    $(info Current folder name "$(CURRENT_DIR)" is contains valid minor        \
+    version number "$(MINOR_VER)"!)
 else
-    $(error Minor version number "$(MINOR_VER)" is not a valid version number.                                          \
-    $(newline)                 Library version folder name must contain valid minor version nuber.                      \
-    $(newline)                 Example: "v1.3" or "v2.8"                                                                \
+    $(error Minor version number "$(MINOR_VER)" is not a valid version number. \
+    $(newline)   Library version folder name must contain                      \
+                 valid minor version number.                                   \
+    $(newline)   Example: "v1.3" or "v2.8"                                     \
     $(newline))
 endif
 
