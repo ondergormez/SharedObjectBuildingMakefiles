@@ -109,11 +109,13 @@ MAJOR_VER = $(word 1,$(SPACE_ADDED_VERSION_NAME))
 IS_VALID_MAJOR_VER = $(shell [ $(MAJOR_VER) -ge 0 ] && echo true)
 
 ifeq ($(IS_VALID_MAJOR_VER),true)
-    $(info Current folder name "$(CURRENT_DIR)" is contains valid major version number "$(MAJOR_VER)"!)
+    $(info Current folder name "$(CURRENT_DIR)" is contains valid major        \
+    version number "$(MAJOR_VER)"!)
 else
-    $(error Major version number "$(MAJOR_VER)" is not a valid version number.                                          \
-    $(newline)                 Library version folder name must contain valid major version nuber.                      \
-    $(newline)                 Example: "v1.3" or "v2.8"                                                                \
+    $(error Major version number "$(MAJOR_VER)" is not a valid version number. \
+    $(newline)   Library version folder name must contain                      \
+                 valid major version nuber.                                    \
+    $(newline)   Example: "v1.3" or "v2.8"                                     \
     $(newline))
 endif
 
