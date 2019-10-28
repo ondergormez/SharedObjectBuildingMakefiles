@@ -50,6 +50,18 @@ endef
 ################################################################################
 #                LIBRARY FOLDER DETECTION PART OF THE MAKEFILE                 #
 ################################################################################
+COMPILE_LIBRARY:= 
+COMPILE_PROJECT:= 
+
+ifeq ($(COMPILE_PROJECT),true)
+    $(info Current folder name "$(CURRENT_DIR)" is contains valid major        \
+    version number "$(MAJOR_VER)"!)
+else
+
+    $(error no valid target found!)
+endif
+
+$(error terminated)
 
 LIB_NAME     = $(notdir $(shell dirname "$(CURDIR)"))
 PROJECT_NAME = $(subst $(LIB_TAG),$(empty),$(LIB_NAME))
