@@ -1,6 +1,7 @@
 # Shared Object Building Makefiles
 
 Shared Object Building Makefile project is a makefile that is used for compiling different libraries to shared object with the same makefile.
+
 ---
 
 ## Prerequisite Programs to be Installed
@@ -18,6 +19,7 @@ yum install gcc g++ make git
 # openSUSE
 zypper install gcc g++ make git
 ```
+
 ---
 
 ### Install Shared Object Building Makefiles
@@ -32,6 +34,7 @@ cd sharedobjectbuildingmakefiles
 # run script with root privileges to build, install, start sharedobjectbuildingmakefiles
 ./sharedobjectbuildingmakefiles-installer.sh
 ```
+
 ---
 
 ## Usage for Shared Object Project Building
@@ -48,6 +51,7 @@ cd sharedobjectbuildingmakefiles
             * 04-so     /* (folder) */
             * makefile
 ```
+
 ---
 
 ## Usage for Executable Project Building
@@ -63,12 +67,14 @@ cd sharedobjectbuildingmakefiles
 ```
 ## Key Notes
 Created shared object libraries (.so files) and their interfaces (.h files) copied in to "**/usr/local/lib/ExternalLibraries**" path.
+
 ---
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
 ---
 
 ## License
