@@ -2,6 +2,22 @@
 
 Shared Object Building Makefile project is a makefile that is used for compiling different libraries to shared object with the same makefile.
 
+## Prerequisite Programs to be Installed
+
+```sh
+# Debian / Ubuntu
+apt-get install gcc g++ make git
+
+# Fedora
+dnf install gcc g++ make git
+
+# CentOS / Red Hat Enterprise Linux
+yum install gcc g++ make git
+
+# openSUSE
+zypper install gcc g++ make git
+```
+
 ## Usage for Shared Object Project Building
 * Library name should start with "**lib**" prefix.
 * Library folder should include the version number subfolder.
