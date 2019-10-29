@@ -1,14 +1,21 @@
 echo Installation started!
 
 # TODO: Burası user config side
-CPP_LIBRARY_MAKEFILE_PATH="$HOME/SharedObjectBuildingMakefiles/makefiles/01-cpp/01-library"
-CPP_PROJECT_MAKEFILE_PATH="$HOME/SharedObjectBuildingMakefiles/makefiles/01-cpp/02-project"
+BASE_DIR="$HOME/SharedObjectBuildingMakefiles"
+
+CPP_LIBRARY_MAKEFILE_PATH="$BASE_DIR/makefiles/01-cpp/01-library"
+CPP_COMPILED_LIBRARIES_INC_DIR="$BASE_DIR/CompiledLibraries/01-inc"
+CPP_COMPILED_LIBRARIES_SO_DIR="$BASE_DIR/CompiledLibraries/02-so"
+
+CPP_PROJECT_MAKEFILE_PATH="$BASE_DIR/makefiles/01-cpp/02-project"
 
 
 
 CPP_LIBRARY_MAKEFILE_PATH_IN_REPO=makefiles/01-cpp/01-library/makefile
 mkdir --verbose --parents $CPP_PROJECT_MAKEFILE_PATH
 cp --verbose $CPP_LIBRARY_MAKEFILE_PATH_IN_REPO $CPP_LIBRARY_MAKEFILE_PATH
+mkdir --verbose --parents $CPP_COMPILED_LIBRARIES_INC_DIR
+mkdir --verbose --parents $CPP_COMPILED_LIBRARIES_SO_DIR
 
 CPP_PROJECT_MAKEFILE_PATH_IN_REPO=makefiles/01-cpp/02-project/makefile
 mkdir --verbose --parents $CPP_PROJECT_MAKEFILE_PATH
@@ -25,7 +32,11 @@ echo "# Makefiles program at " $(date) >> $BASHRC_FILE_PATH
 echo -e "\n" >> $BASHRC_FILE_PATH
 
 
-echo "export CPP_LIBRARY_MAKEFILE_PATH=$CPP_LIBRARY_MAKEFILE_PATH/makefile" >> $BASHRC_FILE_PATH
+echo "export CPP_LIBRARY_MAKEFILE_PATH=$CPP_LIBRARY_MAKEFILE_PATH/makefile"  >> $BASHRC_FILE_PATH
+echo "export CPP_COMPILED_LIBRARIES_INC_DIR=$CPP_COMPILED_LIBRARIES_INC_DIR" >> $BASHRC_FILE_PATH
+echo "export CPP_COMPILED_LIBRARIES_SO_DIR=$CPP_COMPILED_LIBRARIES_SO_DIR"   >> $BASHRC_FILE_PATH
+echo "" >> $BASHRC_FILE_PATH
+
 echo "export CPP_PROJECT_MAKEFILE_PATH=$CPP_PROJECT_MAKEFILE_PATH/makefile" >> $BASHRC_FILE_PATH
 
 
