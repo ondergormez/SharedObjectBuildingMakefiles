@@ -158,19 +158,15 @@ OBJ_DIR     := $(ROOT)/03-obj
 # SO_DIR      := $(ROOT)/04-so
 
 # Enter currently supported libraries include directories
-INCLUDE_DIRS += -I/usr/local/lib/ExternalLibraries/01-inc
-
-# Enter external libraries current location for copying new header and so file
-LIBRARIES_INC_DIR := /usr/local/lib/ExternalLibraries/01-inc
-LIBRARIES_SO_DIR  := /usr/local/lib/ExternalLibraries/02-so
+INCLUDE_DIRS += -I$(CPP_COMPILED_LIBRARIES_INC_DIR)
 
 # Names
 HEADER_NAME  := $(PROJECT_NAME).hpp
 SOURCE_NAME  := $(PROJECT_NAME).cpp
 OBJ_NAME     := $(PROJECT_NAME).o
 SO_NAME      := $(LIB_NAME).so.$(MAJOR_VER).$(MINOR_VER)
-SO_SYM_LNK_1 := $(LIBRARIES_SO_DIR)/$(LIB_NAME).so.$(MAJOR_VER)
-SO_SYM_LNK_2 := $(LIBRARIES_SO_DIR)/$(LIB_NAME).so
+SO_SYM_LNK_1 := $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(LIB_NAME).so.$(MAJOR_VER)
+SO_SYM_LNK_2 := $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(LIB_NAME).so
 
 # Compilers
 CPP      := g++
@@ -189,19 +185,17 @@ library:
 	$(CPP) $(CPP_FLAGS) $(SRCS_CPP) $(INCLUDE_DIRS) $(USER_INC_DIR)
 	mv $(ROOT)/$(OBJ_NAME) $(OBJ_DIR)
 	$(CPP) -shared -Wl,-soname,$(LIB_NAME).so.$(MAJOR_VER) -o $(SO_NAME) $(OBJS_CPP)
-	sudo mkdir -p $(LIBRARIES_INC_DIR)
-	sudo cp $(INC_DIR)/$(HEADER_NAME) $(LIBRARIES_INC_DIR)
-	sudo mkdir -p $(LIBRARIES_SO_DIR)
-	sudo mv $(SO_NAME) $(LIBRARIES_SO_DIR)
-	sudo ln -sf $(LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1)
-	sudo ln -sf $(LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_2)
-	sudo sh -c "echo '$(LIBRARIES_SO_DIR)' > '$(LD_CONFIG_DIR)/$(LIB_NAME).conf'"
+	sudo cp $(INC_DIR)/$(HEADER_NAME) $(CPP_COMPILED_LIBRARIES_INC_DIR)
+	sudo mv $(SO_NAME) $(CPP_COMPILED_LIBRARIES_SO_DIR)
+	sudo ln -sf $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1)
+	sudo ln -sf $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_2)
+	sudo sh -c "echo '$(CPP_COMPILED_LIBRARIES_SO_DIR)' > '$(LD_CONFIG_DIR)/$(LIB_NAME).conf'"
 	sudo ldconfig
 
 .PHONY: clean
 clean:
-	sudo rm $(LIBRARIES_INC_DIR)/$(HEADER_NAME)
-	sudo rm -rf $(OBJ_DIR)/* $(LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1) $(SO_SYM_LNK_2)
+	sudo rm $(CPP_COMPILED_LIBRARIES_INC_DIR)/$(HEADER_NAME)
+	sudo rm -rf $(OBJ_DIR)/* $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1) $(SO_SYM_LNK_2)
 	sudo rm $(LD_CONFIG_DIR)/$(LIB_NAME).conf
 
 ################################################################################
