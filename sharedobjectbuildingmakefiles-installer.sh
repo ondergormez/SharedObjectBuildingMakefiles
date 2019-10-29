@@ -1,13 +1,13 @@
 echo Installation started!
 
 # TODO: Burası user config side
-CPP_LIBRARY_MAKEFILE_PATH="/usr/local/SharedObjectBuildingMakefiles/makefiles/01-cpp/01-library"
+CPP_LIBRARY_MAKEFILE_PATH="$HOME/SharedObjectBuildingMakefiles/makefiles/01-cpp/01-library"
 
 
 
 CPP_LIBRARY_MAKEFILE_PATH_IN_REPO=makefiles/01-cpp/01-library/makefile
-sudo mkdir --verbose --parents $CPP_LIBRARY_MAKEFILE_PATH
-sudo cp --verbose $CPP_LIBRARY_MAKEFILE_PATH_IN_REPO $CPP_LIBRARY_MAKEFILE_PATH
+mkdir --verbose --parents $CPP_LIBRARY_MAKEFILE_PATH
+cp --verbose $CPP_LIBRARY_MAKEFILE_PATH_IN_REPO $CPP_LIBRARY_MAKEFILE_PATH
 
 BASHRC_FILE_PATH="$HOME/.bashrc"
 echo -e "\n\n################################################################################" >> $BASHRC_FILE_PATH
