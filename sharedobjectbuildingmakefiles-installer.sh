@@ -1,6 +1,15 @@
 echo Installation started!
 
-BASHRC_FILE_PATH="deneme.txt"
+# TODO: Burası user config side
+CPP_LIBRARY_MAKEFILE_PATH="/usr/local/SharedObjectBuildingMakefiles/makefiles/01-cpp/01-library"
+
+
+
+CPP_LIBRARY_MAKEFILE_PATH_IN_REPO=makefiles/01-cpp/01-library/makefile
+sudo mkdir --verbose --parents $CPP_LIBRARY_MAKEFILE_PATH
+sudo cp --verbose $CPP_LIBRARY_MAKEFILE_PATH_IN_REPO $CPP_LIBRARY_MAKEFILE_PATH
+
+BASHRC_FILE_PATH="$HOME/.bashrc"
 echo -e "\n\n################################################################################" >> $BASHRC_FILE_PATH
 echo        "#                    MAKEFILE SPECIFIC CONFIGURATIONS START                    #" >> $BASHRC_FILE_PATH
 echo        "################################################################################" >> $BASHRC_FILE_PATH
@@ -9,7 +18,7 @@ echo "# Makefiles program at " $(date) >> $BASHRC_FILE_PATH
 echo -e "\n" >> $BASHRC_FILE_PATH
 
 
-echo "export CPP_LIBRARY_MAKEFILE_PATH=DenemePath" >> $BASHRC_FILE_PATH
+echo "export CPP_LIBRARY_MAKEFILE_PATH=$CPP_LIBRARY_MAKEFILE_PATH/makefile" >> $BASHRC_FILE_PATH
 
 
 echo -e "\n" >> $BASHRC_FILE_PATH
