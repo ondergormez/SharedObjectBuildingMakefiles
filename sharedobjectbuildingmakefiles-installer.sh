@@ -2,12 +2,19 @@ echo Installation started!
 
 # TODO: Burası user config side
 CPP_LIBRARY_MAKEFILE_PATH="$HOME/SharedObjectBuildingMakefiles/makefiles/01-cpp/01-library"
+CPP_PROJECT_MAKEFILE_PATH="$HOME/SharedObjectBuildingMakefiles/makefiles/01-cpp/02-project"
 
 
 
 CPP_LIBRARY_MAKEFILE_PATH_IN_REPO=makefiles/01-cpp/01-library/makefile
-mkdir --verbose --parents $CPP_LIBRARY_MAKEFILE_PATH
+mkdir --verbose --parents $CPP_PROJECT_MAKEFILE_PATH
 cp --verbose $CPP_LIBRARY_MAKEFILE_PATH_IN_REPO $CPP_LIBRARY_MAKEFILE_PATH
+
+CPP_PROJECT_MAKEFILE_PATH_IN_REPO=makefiles/01-cpp/02-project/makefile
+mkdir --verbose --parents $CPP_PROJECT_MAKEFILE_PATH
+cp --verbose $CPP_PROJECT_MAKEFILE_PATH_IN_REPO $CPP_PROJECT_MAKEFILE_PATH
+
+
 
 BASHRC_FILE_PATH="$HOME/.bashrc"
 echo -e "\n\n################################################################################" >> $BASHRC_FILE_PATH
@@ -19,6 +26,7 @@ echo -e "\n" >> $BASHRC_FILE_PATH
 
 
 echo "export CPP_LIBRARY_MAKEFILE_PATH=$CPP_LIBRARY_MAKEFILE_PATH/makefile" >> $BASHRC_FILE_PATH
+echo "export CPP_PROJECT_MAKEFILE_PATH=$CPP_PROJECT_MAKEFILE_PATH/makefile" >> $BASHRC_FILE_PATH
 
 
 echo -e "\n" >> $BASHRC_FILE_PATH

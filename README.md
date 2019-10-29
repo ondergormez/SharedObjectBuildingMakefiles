@@ -32,6 +32,7 @@ git clone https://OnderGrmz@bitbucket.org/OnderGrmz/sharedobjectbuildingmakefile
 cd sharedobjectbuildingmakefiles
 
 # run script with root privileges to build, install, start sharedobjectbuildingmakefiles
+chmod +x sharedobjectbuildingmakefiles-installer.sh
 ./sharedobjectbuildingmakefiles-installer.sh
 ```
 
