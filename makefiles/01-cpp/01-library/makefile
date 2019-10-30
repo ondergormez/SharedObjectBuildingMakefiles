@@ -175,15 +175,17 @@ library:
 	$(CPP) $(CPP_FLAGS) $(SRCS_CPP) $(INCLUDE_DIRS) $(USER_INC_DIR)
 	mv $(ROOT)/$(OBJ_NAME) $(OBJ_DIR)
 	$(CPP) -shared -Wl,-soname,$(LIB_NAME).so.$(MAJOR_VER) -o $(SO_NAME) $(OBJS_CPP)
-	sudo cp $(INC_DIR)/$(HEADER_NAME) $(CPP_COMPILED_LIBRARIES_INC_DIR)
-	sudo mv $(SO_NAME) $(CPP_COMPILED_LIBRARIES_SO_DIR)
-	sudo ln -sf $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1)
-	sudo ln -sf $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_2)
+	cp $(INC_DIR)/$(HEADER_NAME) $(CPP_COMPILED_LIBRARIES_INC_DIR)
+	mv $(SO_NAME) $(CPP_COMPILED_LIBRARIES_SO_DIR)
+	ln -sf $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1)
+	ln -sf $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_2)
+	sudo ldconfig
 
 .PHONY: clean
 clean:
-	sudo rm $(CPP_COMPILED_LIBRARIES_INC_DIR)/$(HEADER_NAME)
-	sudo rm -rf $(OBJ_DIR)/* $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1) $(SO_SYM_LNK_2)
+	-rm $(CPP_COMPILED_LIBRARIES_INC_DIR)/$(HEADER_NAME)
+	-rm -rf $(OBJ_DIR)/* $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1) $(SO_SYM_LNK_2)
+	sudo ldconfig
 
 ################################################################################
 #                             END OF THE MAKEFILE                              #
