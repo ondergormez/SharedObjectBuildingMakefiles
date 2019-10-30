@@ -18,16 +18,6 @@
 USER_INC_DIR += -Ixxx
 USER_LIBRARIES += -lxxx
 
-# Most of the time you don't have to change this path.
-# Ld config path is a standard location in Linux distributions.
-# The following folder path is used on
-# openSUSE 13.2 (Harlequin) (i586)
-# and
-# Ubuntu 18.04.3 LTS (Bionic Beaver)
-# operating systems.
-# Check this path for the linux distribution you are using.
-LD_CONFIG_DIR=/etc/ld.so.conf.d
-
 ################################################################################
 #                   UTILITY DEFINITION PART OF THE MAKEFILE                    #
 ################################################################################
@@ -189,14 +179,11 @@ library:
 	sudo mv $(SO_NAME) $(CPP_COMPILED_LIBRARIES_SO_DIR)
 	sudo ln -sf $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1)
 	sudo ln -sf $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_2)
-	sudo sh -c "echo '$(CPP_COMPILED_LIBRARIES_SO_DIR)' > '$(LD_CONFIG_DIR)/$(LIB_NAME).conf'"
-	sudo ldconfig
 
 .PHONY: clean
 clean:
 	sudo rm $(CPP_COMPILED_LIBRARIES_INC_DIR)/$(HEADER_NAME)
 	sudo rm -rf $(OBJ_DIR)/* $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1) $(SO_SYM_LNK_2)
-	sudo rm $(LD_CONFIG_DIR)/$(LIB_NAME).conf
 
 ################################################################################
 #                             END OF THE MAKEFILE                              #
