@@ -12,11 +12,7 @@ INC_DIR     := $(ROOT)/01-inc
 SRC_DIR     := $(ROOT)/02-src
 OBJ_DIR     := $(ROOT)/03-obj
 
-LIBRARIES_INC_DIR := /usr/local/lib/ExternalLibraries/01-inc
-LIBRARIES_SO_DIR  := /usr/local/lib/ExternalLibraries/02-so
-
-
-FILES_WITH_PATH_AND_EXTENSION = $(shell find $(LIBRARIES_INC_DIR) -name '*.hpp')#   result: xx/yy/zz/abc.hpp xx/yy/zz/def.hpp
+FILES_WITH_PATH_AND_EXTENSION = $(shell find $(CPP_COMPILED_LIBRARIES_INC_DIR) -name '*.hpp')#   result: xx/yy/zz/abc.hpp xx/yy/zz/def.hpp
 FILES_WITH_EXTENSION = $(notdir $(FILES_WITH_PATH_AND_EXTENSION))#                  result: abc.hpp def.hpp
 FILE_NAMES = $(basename $(FILES_WITH_EXTENSION))#                                   result: abc def
 USED_LIBRARIES = $(addprefix -l, $(FILE_NAMES))#                                    result: -labc -ldef
@@ -31,7 +27,7 @@ SRCS_CPP = $(SRC_DIR)/main.cpp
 OBJS_CPP = $(ROOT)/main.o
 
 main:
-	$(CPP) $(CPP_FLAGS) $(SRCS_CPP) -I$(INC_DIR) -I$(LIBRARIES_INC_DIR) -L$(LIBRARIES_SO_DIR) $(USED_LIBRARIES) -ldl -o $(OBJ_DIR)/prog.elf
+	$(CPP) $(CPP_FLAGS) $(SRCS_CPP) -I$(INC_DIR) -I$(CPP_COMPILED_LIBRARIES_INC_DIR) -L$(CPP_COMPILED_LIBRARIES_SO_DIR) $(USED_LIBRARIES) -ldl -o prog.elf
 
 test:
 	$(USED_LIBRARIES)
