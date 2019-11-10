@@ -52,11 +52,10 @@ chmod +x sharedobjectbuildingmakefiles-installer.sh
 * You can find an example executable project folder hierarchy.
 ```C++
     * prjImageProcessing    /* (folder) */
-        * v1.0              /* (folder) */
-            * 01-inc        /* (folder) */
-            * 02-src        /* (folder) */
-            * 03-obj        /* (folder) */
-            * makefile
+        * 01-inc        /* (folder) */
+        * 02-src        /* (folder) */
+        * 03-obj        /* (folder) */
+        * makefile
 ```
 ## Key Notes
 Created shared object libraries (.so files) and their interfaces (.h files) copied in to "**$HOME/SharedObjectBuildingMakefiles**" path.
