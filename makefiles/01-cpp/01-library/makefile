@@ -48,6 +48,9 @@ PROJECT_NAME = $(subst $(LIB_TAG),$(empty),$(LIB_NAME))
 # "lib PoissonPointProcess". Or return original value "Myproject" to "Myproject" 
 SPACE_ADDED_LIB_NAME = $(subst $(LIB_TAG),$(LIB_TAG)$(space),$(LIB_NAME))
 
+# New line for readable console output
+$(info )
+
 ifeq ($(word 1,$(SPACE_ADDED_LIB_NAME)),$(LIB_TAG))
     $(info Current parent folder "$(LIB_NAME)" is a library folder.)
 else
@@ -56,6 +59,9 @@ else
         $(newline)   Example: "libPoissonPointProcess"                         \
         $(newline))
 endif
+
+# New line for readable console output
+$(info )
 
 ################################################################################
 #                VERSION FOLDER DETECTION PART OF THE MAKEFILE                 #
@@ -134,6 +140,9 @@ else
     $(newline)   Example: "v1.3" or "v2.8"                                     \
     $(newline))
 endif
+
+# New line for readable console output
+$(info )
 
 ################################################################################
 #             NECESSARY SUBFOLDERS DETECTION PART OF THE MAKEFILE              #
