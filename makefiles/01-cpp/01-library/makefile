@@ -75,21 +75,25 @@ CURRENT_DIR = $(notdir $(CURDIR))
 SPACE_ADDED_CURRENT_DIR = $(subst $(VER_TAG),$(VER_TAG)$(space),$(CURRENT_DIR))
 
 ifneq ($(word 1,$(SPACE_ADDED_CURRENT_DIR)),$(VER_TAG))
-    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.   \
-    $(newline)   Library version folder name must contain "v" prefix!          \
-    $(newline)   Example: "v1.3" or "v2.8"                                     \
-    $(newline))
+    $(error                                                                    \
+    $(newline) Current folder "$(CURRENT_DIR)" is not a library version folder.\
+    $(newline) Library version folder name must contain "v" prefix!            \
+    $(newline) Example: "v1.3" or "v2.8"                                       \
+    $(newline)                                                                 \
+    )
 endif
 
 #  Result: X.Y or empty value
 VERSION     = $(word 2,$(SPACE_ADDED_CURRENT_DIR))
 
 ifeq ($(VERSION),$(empty))
-    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.   \
-    $(newline)   Library version folder name must contain major and minor      \
-    $(newline)   verison number separated by dot!                              \
-    $(newline)   Example: "v1.3" or "v2.8"                                     \
-    $(newline))
+    $(error                                                                    \
+    $(newline) Current folder "$(CURRENT_DIR)" is not a library version folder.\
+    $(newline) Library version folder name must contain major and minor        \
+    $(newline) verison number separated by dot!                                \
+    $(newline) Example: "v1.3" or "v2.8"                                       \
+    $(newline)                                                                 \
+    )
 endif
 
 # If VERSION is contains a dot return dot
@@ -99,11 +103,13 @@ IS_INCLUDE_DOT = $(findstring $(dot),$(VERSION))
 ifeq ($(IS_INCLUDE_DOT),$(dot))
     $(info Current folder name "$(CURRENT_DIR)" is contains dot!)
 else
-    $(error Current folder "$(CURRENT_DIR)" is not a library version folder.   \
-    $(newline)   Library version folder name must contain dot for separating   \
-    $(newline)   major and minor version number!                               \
-    $(newline)   Example: "v1.3" or "v2.8"                                     \
-    $(newline))
+    $(error                                                                    \
+    $(newline) Current folder "$(CURRENT_DIR)" is not a library version folder.\
+    $(newline) Library version folder name must contain dot for separating     \
+    $(newline) major and minor version number!                                 \
+    $(newline) Example: "v1.3" or "v2.8"                                       \
+    $(newline)                                                                 \
+    )
 endif
 
 # Result: X Y or just X
