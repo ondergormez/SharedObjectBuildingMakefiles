@@ -54,10 +54,12 @@ $(info )
 ifeq ($(word 1,$(SPACE_ADDED_LIB_NAME)),$(LIB_TAG))
     $(info Current parent folder "$(LIB_NAME)" is a library folder.)
 else
-    $(error Current parent folder "$(LIB_NAME)" is not a library folder.       \
-        $(newline)   Library folder name must contain "lib" prefix!            \
-        $(newline)   Example: "libPoissonPointProcess"                         \
-        $(newline))
+    $(error                                                                    \
+    $(newline) Current parent folder "$(LIB_NAME)" is not a library folder.    \
+    $(newline) Library folder name must contain "lib" prefix!                  \
+    $(newline) Example: "libPoissonPointProcess"                               \
+    $(newline)                                                                 \
+    )
 endif
 
 # New line for readable console output
