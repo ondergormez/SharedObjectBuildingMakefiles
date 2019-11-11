@@ -145,11 +145,14 @@ ifeq ($(IS_VALID_MINOR_VER),true)
     $(info Current folder name "$(CURRENT_DIR)" is contains valid minor        \
     version number "$(MINOR_VER)"!)
 else
-    $(error Minor version number "$(MINOR_VER)" is not a valid version number. \
-    $(newline)   Library version folder name must contain                      \
-                 valid minor version number.                                   \
-    $(newline)   Example: "v1.3" or "v2.8"                                     \
-    $(newline))
+    $(error                                                                    \
+    $(newline) Minor version number "$(MINOR_VER)" is not a                    \
+               valid version number.                                           \
+    $(newline) Library version folder name must contain                        \
+               valid minor version number.                                     \
+    $(newline) Example: "v1.3" or "v2.8"                                       \
+    $(newline)                                                                 \
+    )
 endif
 
 # New line for readable console output
