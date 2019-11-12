@@ -207,7 +207,10 @@ library:
 .PHONY: clean
 clean:
 	-rm $(CPP_COMPILED_LIBRARIES_INC_DIR)/$(HEADER_NAME)
-	-rm -rf $(OBJ_DIR)/* $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1) $(SO_SYM_LNK_2)
+	-rm -rf $(OBJ_DIR)/*
+	-rm -rf $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME)
+	-rm -rf $(SO_SYM_LNK_1)
+	-rm -rf $(SO_SYM_LNK_2)
 	sudo ldconfig
 
 ################################################################################
