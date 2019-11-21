@@ -17,7 +17,6 @@
 #include <cstdlib>    /* srand, rand */
 #include <ctime>      /* time */
 #include "RandomArray.hpp"
-#include "Utility.hpp"
 
 using namespace std;
 /*
@@ -64,7 +63,7 @@ vector<uint32_t> &Array::FillRandomValue(vector<uint32_t> &array)
     for (uint32_t i = 0; i < array.size(); ++i) {
         array[i] = rand() % 200 + 1;
     }
-    //Utility::DisplayVector(array);
+    
 #ifndef NDEBUG
     std::cout << "Array::FillRandomValue function call ended!" << std::endl;
     cout << "**************************************" << endl;
