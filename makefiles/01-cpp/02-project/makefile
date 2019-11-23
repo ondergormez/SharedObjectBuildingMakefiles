@@ -105,6 +105,11 @@ main:
 	-ldl -L$(CPP_COMPILED_LIBRARIES_SO_DIR) $(USED_LIBRARIES)                  \
 	-o $(PROJECT_NAME).elf
 
+.PHONY: clean
+clean:
+	-rm -rf $(OBJ_DIR)/*
+	-rm -rf $(PROJECT_NAME).elf
+
 ################################################################################
 #                             END OF THE MAKEFILE                              #
 ################################################################################
