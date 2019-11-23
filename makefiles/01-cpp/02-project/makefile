@@ -72,10 +72,19 @@ INC_DIR     := $(ROOT)/01-inc
 SRC_DIR     := $(ROOT)/02-src
 OBJ_DIR     := $(ROOT)/03-obj
 
-FILES_WITH_PATH_AND_EXTENSION = $(shell find $(CPP_COMPILED_LIBRARIES_INC_DIR) -name '*.hpp')#   result: xx/yy/zz/abc.hpp xx/yy/zz/def.hpp
-FILES_WITH_EXTENSION = $(notdir $(FILES_WITH_PATH_AND_EXTENSION))#                  result: abc.hpp def.hpp
-FILE_NAMES = $(basename $(FILES_WITH_EXTENSION))#                                   result: abc def
-USED_LIBRARIES = $(addprefix -l, $(FILE_NAMES))#                                    result: -labc -ldef
+# result: xx/yy/zz/abc.hpp xx/yy/zz/def.hpp
+FILES_WITH_PATH_AND_EXTENSION = $(shell find $(CPP_COMPILED_LIBRARIES_INC_DIR) \
+                                  -name '*.hpp')
+# result: abc.hpp def.hpp
+FILES_WITH_EXTENSION = $(notdir $(FILES_WITH_PATH_AND_EXTENSION))
+# result: abc def
+FILE_NAMES = $(basename $(FILES_WITH_EXTENSION))
+# result: -labc -ldef
+USED_LIBRARIES = $(addprefix -l, $(FILE_NAMES))
+
+$(info Shared object libraries in this system: $(FILE_NAMES))
+# New line for readable console output
+$(info )
 
 CPP      := g++
 
@@ -91,7 +100,11 @@ OBJS_CPP = $(ROOT)/main.o
 ################################################################################
 
 main:
-	$(CPP) $(CPP_FLAGS) $(SRCS_CPP) -I$(INC_DIR) -I$(CPP_COMPILED_LIBRARIES_INC_DIR) -L$(CPP_COMPILED_LIBRARIES_SO_DIR) $(USED_LIBRARIES) -ldl -o $(PROJECT_NAME).elf
+	$(CPP) $(CPP_FLAGS) $(SRCS_CPP)                                            \
+	-I$(INC_DIR) -I$(CPP_COMPILED_LIBRARIES_INC_DIR)                           \
+	-ldl -L$(CPP_COMPILED_LIBRARIES_SO_DIR) $(USED_LIBRARIES)                  \
+	-o $(PROJECT_NAME).elf
 
-used_libraries:
-	echo Used libraries: $(FILE_NAMES)
+################################################################################
+#                             END OF THE MAKEFILE                              #
+################################################################################
