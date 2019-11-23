@@ -41,21 +41,21 @@ endef
 #                LIBRARY FOLDER DETECTION PART OF THE MAKEFILE                 #
 ################################################################################
 
-LIB_NAME     = $(notdir $(shell dirname "$(CURDIR)"))
-PROJECT_NAME = $(subst $(LIB_TAG),$(empty),$(LIB_NAME))
+FOLDER_NAME       = $(notdir $(shell dirname "$(CURDIR)"))
+LIB_NAME = $(subst $(LIB_TAG),$(empty),$(FOLDER_NAME))
 
 # Return space added value. For example "libPoissonPointProcess" to
 # "lib PoissonPointProcess". Or return original value "Myproject" to "Myproject" 
-SPACE_ADDED_LIB_NAME = $(subst $(LIB_TAG),$(LIB_TAG)$(space),$(LIB_NAME))
+SPACE_ADDED_FOLDER_NAME = $(subst $(LIB_TAG),$(LIB_TAG)$(space),$(FOLDER_NAME))
 
 # New line for readable console output
 $(info )
 
-ifeq ($(word 1,$(SPACE_ADDED_LIB_NAME)),$(LIB_TAG))
-    $(info Current parent folder "$(LIB_NAME)" is a library folder.)
+ifeq ($(word 1,$(SPACE_ADDED_FOLDER_NAME)),$(LIB_TAG))
+    $(info Current parent folder "$(FOLDER_NAME)" is a library folder.)
 else
     $(error                                                                    \
-    $(newline) Current parent folder "$(LIB_NAME)" is not a library folder.    \
+    $(newline) Current parent folder "$(FOLDER_NAME)" is not a library folder. \
     $(newline) Library folder name must contain "lib" prefix!                  \
     $(newline) Example: "libPoissonPointProcess"                               \
     $(newline)                                                                 \
@@ -174,12 +174,12 @@ OBJ_DIR     := $(ROOT)/03-obj
 INCLUDE_DIRS += -I$(CPP_COMPILED_LIBRARIES_INC_DIR)
 
 # Names
-HEADER_NAME  := $(PROJECT_NAME).hpp
-SOURCE_NAME  := $(PROJECT_NAME).cpp
-OBJ_NAME     := $(PROJECT_NAME).o
-SO_NAME      := $(LIB_NAME).so.$(MAJOR_VER).$(MINOR_VER)
-SO_SYM_LNK_1 := $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(LIB_NAME).so.$(MAJOR_VER)
-SO_SYM_LNK_2 := $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(LIB_NAME).so
+HEADER_NAME  := $(LIB_NAME).hpp
+SOURCE_NAME  := $(LIB_NAME).cpp
+OBJ_NAME     := $(LIB_NAME).o
+SO_NAME      := $(FOLDER_NAME).so.$(MAJOR_VER).$(MINOR_VER)
+SO_SYM_LNK_1 := $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(FOLDER_NAME).so.$(MAJOR_VER)
+SO_SYM_LNK_2 := $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(FOLDER_NAME).so
 
 # Compilers
 CPP      := g++
@@ -197,7 +197,7 @@ OBJS_CPP = $(OBJ_DIR)/$(OBJ_NAME)
 library:
 	$(CPP) $(CPP_FLAGS) $(SRCS_CPP) $(INCLUDE_DIRS) $(USER_INC_DIR)
 	mv $(ROOT)/$(OBJ_NAME) $(OBJ_DIR)
-	$(CPP) -shared -Wl,-soname,$(LIB_NAME).so.$(MAJOR_VER) -o $(SO_NAME) $(OBJS_CPP)
+	$(CPP) -shared -Wl,-soname,$(FOLDER_NAME).so.$(MAJOR_VER) -o $(SO_NAME) $(OBJS_CPP)
 	cp $(INC_DIR)/$(HEADER_NAME) $(CPP_COMPILED_LIBRARIES_INC_DIR)
 	mv $(SO_NAME) $(CPP_COMPILED_LIBRARIES_SO_DIR)
 	ln -sf $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME) $(SO_SYM_LNK_1)
