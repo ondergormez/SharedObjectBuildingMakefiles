@@ -10,8 +10,9 @@ Shared Object Building Makefile project is a makefile that is used for compiling
     1.  [Shared Object Library Building Makefile](#31-shared-object-library-building-makefile)
     2.  [Executable Project Building Makefile](#32-executable-project-building-makefile)
 4.  [Key Notes](#4-key-notes)
-5.  [Contributing](#5-contributing)
-6.  [License](#6-license)
+5.  [Release Notes](#5-release-notes)
+6.  [Contributing](#6-contributing)
+7.  [License](#7-license)
 
 ## 1. Prerequisite Programs to be Installed
 
@@ -55,10 +56,13 @@ See detailed description at [executable project building makefile page](https://
 ## 4. Key Notes
 Created shared object libraries (.so files) and their interfaces (.h files) copied in to "**$HOME/SharedObjectBuildingMakefiles**" path.
 
-## 5. Contributing
+## 5. Release Notes
+Click [here](http://htmlpreview.github.io/?https://github.com/ondergormez/SharedObjectBuildingMakefiles/blob/master/Release%20Notes.html) to see release notes.
+
+## 6. Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-## 6. License
+## 7. License
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)

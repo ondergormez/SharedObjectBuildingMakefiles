@@ -67,3 +67,4 @@ echo $CPP_COMPILED_LIBRARIES_SO_DIR | sudo tee --append $SOBM_LD_CONFIG_FILE
 sudo ldconfig
 
 echo Installation was successful!
+xdg-open "Release Notes.html"
