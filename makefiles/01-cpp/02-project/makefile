@@ -36,7 +36,30 @@ endef
 #                PROJECT FOLDER DETECTION PART OF THE MAKEFILE                 #
 ################################################################################
 
+FOLDER_NAME     = $(notdir $(shell pwd))
+PROJECT_NAME = $(subst $(PROJECT_TAG),$(empty),$(FOLDER_NAME))
 
+# Return space added value. For example "prjSortAndDisplay" to
+# "prj SortAndDisplay". Or return original value "Myproject" to "Myproject" 
+SPACE_ADDED_FOLDER_NAME = $(subst $(PROJECT_TAG),$(PROJECT_TAG)$(space),       \
+                            $(FOLDER_NAME))
+
+# New line for readable console output
+$(info )
+
+ifeq ($(word 1,$(SPACE_ADDED_FOLDER_NAME)),$(PROJECT_TAG))
+    $(info Current folder "$(FOLDER_NAME)" is a project folder.)
+else
+    $(error                                                                    \
+    $(newline) Current folder "$(FOLDER_NAME)" is not a project folder.        \
+    $(newline) Project folder name must contain "$(PROJECT_TAG)" prefix!       \
+    $(newline) Example: "$(PROJECT_TAG)SortAndDisplay"                         \
+    $(newline)                                                                 \
+    )
+endif
+
+# New line for readable console output
+$(info )
 
 ################################################################################
 #             NECESSARY SUBFOLDERS DETECTION PART OF THE MAKEFILE              #
@@ -68,7 +91,7 @@ OBJS_CPP = $(ROOT)/main.o
 ################################################################################
 
 main:
-	$(CPP) $(CPP_FLAGS) $(SRCS_CPP) -I$(INC_DIR) -I$(CPP_COMPILED_LIBRARIES_INC_DIR) -L$(CPP_COMPILED_LIBRARIES_SO_DIR) $(USED_LIBRARIES) -ldl -o prog.elf
+	$(CPP) $(CPP_FLAGS) $(SRCS_CPP) -I$(INC_DIR) -I$(CPP_COMPILED_LIBRARIES_INC_DIR) -L$(CPP_COMPILED_LIBRARIES_SO_DIR) $(USED_LIBRARIES) -ldl -o $(PROJECT_NAME).elf
 
-test:
-	$(USED_LIBRARIES)
+used_libraries:
+	echo Used libraries: $(FILE_NAMES)
