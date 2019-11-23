@@ -5,6 +5,43 @@
 # Decription:  Makefile for the SharedObjectBuildings
 #
 
+################################################################################
+#               USER SPECIFIC CONFIGURATION PART OF THE MAKEFILE               #
+################################################################################
+
+#
+# User Configuration Area
+# Please change this section for your specific needs. Such as
+# other external libraries
+#
+
+################################################################################
+#                   UTILITY DEFINITION PART OF THE MAKEFILE                    #
+################################################################################
+
+#
+# Generic Area
+# Please don't change this section for properly working.
+#
+
+PROJECT_TAG = prj
+empty:= 
+space:= $(empty) $(empty)
+define newline
+
+
+endef
+
+################################################################################
+#                PROJECT FOLDER DETECTION PART OF THE MAKEFILE                 #
+################################################################################
+
+
+
+################################################################################
+#             NECESSARY SUBFOLDERS DETECTION PART OF THE MAKEFILE              #
+################################################################################
+
 # Directories
 ROOT         = .
 MAIN_DIR    := $(ROOT)
@@ -25,6 +62,10 @@ CPP_FLAGS := -Wall -fPIC -std=c++11 -w
 SRCS_CPP = $(SRC_DIR)/main.cpp
 
 OBJS_CPP = $(ROOT)/main.o
+
+################################################################################
+#                         RECIPES PART OF THE MAKEFILE                         #
+################################################################################
 
 main:
 	$(CPP) $(CPP_FLAGS) $(SRCS_CPP) -I$(INC_DIR) -I$(CPP_COMPILED_LIBRARIES_INC_DIR) -L$(CPP_COMPILED_LIBRARIES_SO_DIR) $(USED_LIBRARIES) -ldl -o prog.elf
