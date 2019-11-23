@@ -56,8 +56,8 @@ ifeq ($(word 1,$(SPACE_ADDED_FOLDER_NAME)),$(LIB_TAG))
 else
     $(error                                                                    \
     $(newline) Current parent folder "$(FOLDER_NAME)" is not a library folder. \
-    $(newline) Library folder name must contain "lib" prefix!                  \
-    $(newline) Example: "libPoissonPointProcess"                               \
+    $(newline) Library folder name must contain "$(LIB_TAG)" prefix!           \
+    $(newline) Example: "$(LIB_TAG)PoissonPointProcess"                        \
     $(newline)                                                                 \
     )
 endif
@@ -79,8 +79,8 @@ SPACE_ADDED_CURRENT_DIR = $(subst $(VER_TAG),$(VER_TAG)$(space),$(CURRENT_DIR))
 ifneq ($(word 1,$(SPACE_ADDED_CURRENT_DIR)),$(VER_TAG))
     $(error                                                                    \
     $(newline) Current folder "$(CURRENT_DIR)" is not a library version folder.\
-    $(newline) Library version folder name must contain "v" prefix!            \
-    $(newline) Example: "v1.3" or "v2.8"                                       \
+    $(newline) Library version folder name must contain "$(VER_TAG)" prefix!   \
+    $(newline) Example: "$(VER_TAG)1.3" or "$(VER_TAG)2.8"                     \
     $(newline)                                                                 \
     )
 endif
@@ -93,7 +93,7 @@ ifeq ($(VERSION),$(empty))
     $(newline) Current folder "$(CURRENT_DIR)" is not a library version folder.\
     $(newline) Library version folder name must contain major and minor        \
     $(newline) verison number separated by dot!                                \
-    $(newline) Example: "v1.3" or "v2.8"                                       \
+    $(newline) Example: "$(VER_TAG)1.3" or "$(VER_TAG)2.8"                     \
     $(newline)                                                                 \
     )
 endif
@@ -109,7 +109,7 @@ else
     $(newline) Current folder "$(CURRENT_DIR)" is not a library version folder.\
     $(newline) Library version folder name must contain dot for separating     \
     $(newline) major and minor version number!                                 \
-    $(newline) Example: "v1.3" or "v2.8"                                       \
+    $(newline) Example: "$(VER_TAG)1.3" or "$(VER_TAG)2.8"                     \
     $(newline)                                                                 \
     )
 endif
@@ -131,7 +131,7 @@ else
                valid version number.                                           \
     $(newline) Library version folder name must contain                        \
                valid major version number.                                     \
-    $(newline) Example: "v1.3" or "v2.8"                                       \
+    $(newline) Example: "$(VER_TAG)1.3" or "$(VER_TAG)2.8"                     \
     $(newline)                                                                 \
     )
 endif
@@ -150,7 +150,7 @@ else
                valid version number.                                           \
     $(newline) Library version folder name must contain                        \
                valid minor version number.                                     \
-    $(newline) Example: "v1.3" or "v2.8"                                       \
+    $(newline) Example: "$(VER_TAG)1.3" or "$(VER_TAG)2.8"                     \
     $(newline)                                                                 \
     )
 endif
