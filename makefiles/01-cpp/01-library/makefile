@@ -207,7 +207,7 @@ library:
 
 .PHONY: clean
 clean:
-	-rm $(CPP_COMPILED_LIBRARIES_INC_DIR)/$(HEADER_NAME)
+	-rm -rf $(CPP_COMPILED_LIBRARIES_INC_DIR)/$(HEADER_NAME)
 	-rm -rf $(OBJ_DIR)/*
 	-rm -rf $(CPP_COMPILED_LIBRARIES_SO_DIR)/$(SO_NAME)
 	-rm -rf $(SO_SYM_LNK_1)
