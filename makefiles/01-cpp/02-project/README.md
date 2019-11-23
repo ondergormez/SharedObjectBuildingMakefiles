@@ -8,3 +8,7 @@
         * 03-obj            /* (folder) */
         * makefile
 ```
+
+## Demos
+
+Use [demo projects](https://github.com/ondergormez/SharedObjectBuildingMakefiles/tree/master/demo/01-cpp/02-project) first to better understanding.

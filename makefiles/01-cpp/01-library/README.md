@@ -12,3 +12,7 @@
             * 04-so     /* (folder) */
             * makefile
 ```
+
+## Demos
+
+Use [demo projects](https://github.com/ondergormez/SharedObjectBuildingMakefiles/tree/master/demo/01-cpp/01-library) first to better understanding.
