@@ -5,7 +5,7 @@ Shared Object Building Makefile project is a makefile that is used for compiling
 ## Contents
 
 1.  [Prerequisite Programs to be Installed](#1-prerequisite-programs-to-be-installed)
-2.  [Install Shared Object Building Makefiles](#2-install-shared-object-building-makefiles)
+2.  [Install/Uninstall Shared Object Building Makefiles](#2-installuninstall-shared-object-building-makefiles)
 3.  [Makefiles](#3-makefiles)
     1.  [Shared Object Library Building Makefile](#31-shared-object-library-building-makefile)
     2.  [Executable Project Building Makefile](#32-executable-project-building-makefile)
@@ -30,7 +30,7 @@ yum install gcc g++ make git
 zypper install gcc g++ make git
 ```
 
-## 2. Install Shared Object Building Makefiles
+## 2. Install/Uninstall Shared Object Building Makefiles
 
 Do this to install and run Shared Object Building Makefiles:
 
@@ -43,6 +43,14 @@ cd sharedobjectbuildingmakefiles
 chmod +x sharedobjectbuildingmakefiles-installer.sh
 ./sharedobjectbuildingmakefiles-installer.sh
 ```
+
+Do this to uninstall Shared Object Building Makefiles:
+```sh
+# run script with root privileges to uninstall sharedobjectbuildingmakefiles
+chmod +x sharedobjectbuildingmakefiles-uninstaller.sh
+./sharedobjectbuildingmakefiles-uninstaller.sh
+```
+
 ## 3. Makefiles
 
 ### 3.1. Shared Object Library Building Makefile
