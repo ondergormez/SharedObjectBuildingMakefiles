@@ -41,8 +41,7 @@ endef
 #                LIBRARY FOLDER DETECTION PART OF THE MAKEFILE                 #
 ################################################################################
 
-FOLDER_NAME       = $(notdir $(shell dirname "$(CURDIR)"))
-LIB_NAME = $(subst $(LIB_TAG),$(empty),$(FOLDER_NAME))
+FOLDER_NAME = $(notdir $(shell dirname "$(CURDIR)"))
 
 # Return space added value. For example "libPoissonPointProcess" to
 # "lib PoissonPointProcess". Or return original value "Myproject" to "Myproject" 
@@ -51,15 +50,28 @@ SPACE_ADDED_FOLDER_NAME = $(subst $(LIB_TAG),$(LIB_TAG)$(space),$(FOLDER_NAME))
 # New line for readable console output
 $(info )
 
-ifeq ($(word 1,$(SPACE_ADDED_FOLDER_NAME)),$(LIB_TAG))
-    $(info Current parent folder "$(FOLDER_NAME)" is a library folder.)
-else
+ifneq ($(word 1,$(SPACE_ADDED_FOLDER_NAME)),$(LIB_TAG))
     $(error                                                                    \
     $(newline) Current parent folder "$(FOLDER_NAME)" is not a library folder. \
     $(newline) Library folder name must contain "$(LIB_TAG)" prefix!           \
     $(newline) Example: "$(LIB_TAG)PoissonPointProcess"                        \
     $(newline)                                                                 \
     )
+endif
+
+# Result: PoissonPointProcess or empty value
+LIB_NAME = $(word 2,$(SPACE_ADDED_FOLDER_NAME))
+
+ifeq ($(LIB_NAME),$(empty))
+    $(error                                                                    \
+    $(newline) Current parent folder "$(FOLDER_NAME)" is not a library folder. \
+    $(newline) The library folder name must contain library name after         \
+               "$(LIB_TAG)" prefix!                                            \
+    $(newline) Example: "$(LIB_TAG)PoissonPointProcess"                        \
+    $(newline)                                                                 \
+    )
+else
+    $(info Current parent folder "$(FOLDER_NAME)" is a library folder.)
 endif
 
 # New line for readable console output
@@ -86,7 +98,7 @@ ifneq ($(word 1,$(SPACE_ADDED_CURRENT_DIR)),$(VER_TAG))
 endif
 
 #  Result: X.Y or empty value
-VERSION     = $(word 2,$(SPACE_ADDED_CURRENT_DIR))
+VERSION = $(word 2,$(SPACE_ADDED_CURRENT_DIR))
 
 ifeq ($(VERSION),$(empty))
     $(error                                                                    \
