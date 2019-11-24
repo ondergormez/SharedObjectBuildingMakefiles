@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2018 Önder Görmez
+ * Copyright (C) 2019 Önder Görmez
 
  * This program is free software: you can redistribute it and/or modify it under the terms of the GNU General
  * Public License as published by the Free Software Foundation, either version 3 of the License, or (at your 
@@ -14,9 +14,10 @@
  */
 
 #include <iostream>
+#include <iomanip>
 #include "RandomArray.hpp"
-#include "Sorting.hpp"
-#include "Utility.hpp"
+
+void DisplayVector(std::vector<uint32_t> &vectorToBeDisplayed);
 
 using namespace std;
 
@@ -25,14 +26,25 @@ int main(void)
     cout << "This is a test project" << endl; 
 
     Array::DisplayLibraryVersion();
-    Sorting::DisplayLibraryVersion();
-    Utility::DisplayLibraryVersion();
 
     vector<uint32_t> testArray = vector<uint32_t>(7);
     Array::FillRandomValue(testArray);
-    Utility::DisplayVector(testArray);
-    Sorting::SortArray(testArray);
-    Utility::DisplayVector(testArray);
+    DisplayVector(testArray);
 
     return 0;
 }
+
+
+/*
+* Display Vector
+*/
+void DisplayVector(std::vector<uint32_t> &vectorToBeDisplayed)
+{
+    std::cout << std::endl;
+    std::cout << "Size: " << vectorToBeDisplayed.size() << std::endl;
+    for (uint32_t i = 0; i < vectorToBeDisplayed.size(); ++i) {
+        std::cout << std::setprecision(3) << std::left << std::setw(10) << vectorToBeDisplayed[i] << " ";
+    }
+    std::cout << std::endl;
+    std::cout << std::endl;
+};
