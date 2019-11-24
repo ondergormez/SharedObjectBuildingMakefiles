@@ -36,8 +36,7 @@ endef
 #                PROJECT FOLDER DETECTION PART OF THE MAKEFILE                 #
 ################################################################################
 
-FOLDER_NAME     = $(notdir $(shell pwd))
-PROJECT_NAME = $(subst $(PROJECT_TAG),$(empty),$(FOLDER_NAME))
+FOLDER_NAME = $(notdir $(shell pwd))
 
 # Return space added value. For example "prjSortAndDisplay" to
 # "prj SortAndDisplay". Or return original value "Myproject" to "Myproject" 
@@ -47,15 +46,28 @@ SPACE_ADDED_FOLDER_NAME = $(subst $(PROJECT_TAG),$(PROJECT_TAG)$(space),       \
 # New line for readable console output
 $(info )
 
-ifeq ($(word 1,$(SPACE_ADDED_FOLDER_NAME)),$(PROJECT_TAG))
-    $(info Current folder "$(FOLDER_NAME)" is a project folder.)
-else
+ifneq ($(word 1,$(SPACE_ADDED_FOLDER_NAME)),$(PROJECT_TAG))
     $(error                                                                    \
     $(newline) Current folder "$(FOLDER_NAME)" is not a project folder.        \
     $(newline) Project folder name must contain "$(PROJECT_TAG)" prefix!       \
     $(newline) Example: "$(PROJECT_TAG)SortAndDisplay"                         \
     $(newline)                                                                 \
     )
+endif
+
+# Result: SortAndDisplay or empty value
+PROJECT_NAME = $(word 2,$(SPACE_ADDED_FOLDER_NAME))
+
+ifeq ($(PROJECT_NAME),$(empty))
+    $(error                                                                    \
+    $(newline) Current folder "$(FOLDER_NAME)" is not a project folder.        \
+    $(newline) Project folder name must contain project name after             \
+               "$(PROJECT_TAG)" prefix!                                        \
+    $(newline) Example: "$(PROJECT_TAG)SortAndDisplay"                         \
+    $(newline)                                                                 \
+    )
+else
+    $(info Current folder "$(FOLDER_NAME)" is a project folder.)
 endif
 
 # New line for readable console output

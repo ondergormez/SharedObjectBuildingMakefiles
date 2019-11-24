@@ -65,7 +65,7 @@ LIB_NAME = $(word 2,$(SPACE_ADDED_FOLDER_NAME))
 ifeq ($(LIB_NAME),$(empty))
     $(error                                                                    \
     $(newline) Current parent folder "$(FOLDER_NAME)" is not a library folder. \
-    $(newline) The library folder name must contain library name after         \
+    $(newline) Library folder name must contain library name after             \
                "$(LIB_TAG)" prefix!                                            \
     $(newline) Example: "$(LIB_TAG)PoissonPointProcess"                        \
     $(newline)                                                                 \
