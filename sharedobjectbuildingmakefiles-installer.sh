@@ -64,3 +64,4 @@ echo $CPP_COMPILED_LIBRARIES_SO_DIR | sudo tee --append $SOBM_LD_CONFIG_FILE
 sudo ldconfig
 
 echo Installation was successful!
+xdg-open "https://github.com/ondergormez/SharedObjectBuildingMakefiles/blob/master/Release Notes/"
