@@ -111,7 +111,7 @@ OBJS_CPP = $(ROOT)/main.o
 #                         RECIPES PART OF THE MAKEFILE                         #
 ################################################################################
 
-main:
+project:
 	$(CPP) $(CPP_FLAGS) $(SRCS_CPP)                                            \
 	-I$(INC_DIR) -I$(CPP_COMPILED_LIBRARIES_INC_DIR)                           \
 	-ldl -L$(CPP_COMPILED_LIBRARIES_SO_DIR) $(USED_LIBRARIES)                  \
