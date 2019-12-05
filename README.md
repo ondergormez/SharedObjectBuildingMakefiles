@@ -65,7 +65,7 @@ See detailed description at [executable project building makefile page](https://
 Created shared object libraries (.so files) and their interfaces (.h files) copied in to "**$HOME/SharedObjectBuildingMakefiles**" path.
 
 ## 5. Release Notes
-Click [here](http://htmlpreview.github.io/?https://github.com/ondergormez/SharedObjectBuildingMakefiles/blob/master/Release%20Notes.html) to see release notes.
+Click [here](https://github.com/ondergormez/SharedObjectBuildingMakefiles/tree/master/Release%20Notes) to see release notes.
 
 ## 6. Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
