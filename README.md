@@ -37,7 +37,7 @@ Do this to install and run Shared Object Building Makefiles:
 ```sh
 # download it - the directory 'sharedobjectbuildingmakefiles' will be created
 git clone https://github.com/ondergormez/SharedObjectBuildingMakefiles.git --depth=100
-cd sharedobjectbuildingmakefiles
+cd SharedObjectBuildingMakefiles
 
 # run script with root privileges to build, install, start sharedobjectbuildingmakefiles
 chmod +x sharedobjectbuildingmakefiles-installer.sh
