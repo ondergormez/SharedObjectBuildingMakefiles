@@ -18,16 +18,16 @@ Shared Object Building Makefile project is a makefile that is used for compiling
 
 ```sh
 # Debian / Ubuntu
-apt-get install gcc g++ make git
+apt-get install gcc g++ make git dos2unix
 
 # Fedora
-dnf install gcc g++ make git
+dnf install gcc g++ make git dos2unix
 
 # CentOS / Red Hat Enterprise Linux
-yum install gcc g++ make git
+yum install gcc g++ make git dos2unix
 
 # openSUSE
-zypper install gcc g++ make git
+zypper install gcc g++ make git dos2unix
 ```
 
 ## 2. Install/Uninstall Shared Object Building Makefiles
